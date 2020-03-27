@@ -3,7 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { User } from './user';
 import { NotesService } from './notes.service';
-import { UserService } from './user-service';
+import { UserService } from './user.service';
 
 describe('Note service:', () => {
   // pulled these from https://github.com/UMM-CSci-3601-S20/it-1-knights-who-say-ni
