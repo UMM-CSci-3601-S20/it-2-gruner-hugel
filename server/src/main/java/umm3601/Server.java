@@ -37,11 +37,14 @@ public class Server {
 
     Javalin server = Javalin.create().start(4567);
 
-    // List notes for a specific user's doorboard
-    server.get("api/notes/user/:id", noteController::getNotes);
+    // Get all notes
+    server.get("api/notes", noteController::getNotes);
+
+    // Get all notes for a particular user
+    server.get("api/notes/user/:id", noteController::getUserNotes);
 
     // Add new note to a specific user's doorboard
-    server.post("api/notes/new", noteController::addNote);
+    server.post("api/notes/user/:id/new", noteController::addNote);
 
     // Get a single note (:id here refers to note id)
     server.get("api/notes/:id", noteController::getNoteByID);

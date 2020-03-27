@@ -55,6 +55,10 @@ public class NoteController {
     ctx.json(noteCollection.find(new Document()).into(new ArrayList<>()));
   }
 
+  public void getUserNotes(Context ctx) {
+
+  }
+
   public void addNote(Context ctx) {
 
     Note newNote = ctx.bodyValidator(Note.class)
