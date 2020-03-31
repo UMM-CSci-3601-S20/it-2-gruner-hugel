@@ -36,6 +36,10 @@ public class UserController {
   public void getUsers(Context ctx) {
 
   }
+
+  public void getUserById(Context ctx) {
+
+  }
   // UPDATE WHEN THIS STUB IS COMPLETED
   // While I don't thing we actually sold this feature, it would be nice if we were able to implement this as well.
   public void addUser(Context ctx) {

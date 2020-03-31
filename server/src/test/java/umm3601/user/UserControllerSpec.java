@@ -56,6 +56,9 @@ public class UserControllerSpec {
 
   static ObjectMapper jsonMapper = new ObjectMapper();
 
+  static ObjectId importantUserId;
+  static BasicDBObject importantUser;
+
   @BeforeAll
   public static void setupAll() {
     String mongoAddr = System.getenv().getOrDefault("Mongo_ADDR", "localhost");
@@ -97,7 +100,17 @@ public class UserControllerSpec {
       "                    email: \"bruce088@morris.umn.edu\"\n" +
       "                }"));
 
+      importantUserId = new ObjectId();
+      new BasicDBObject("_id", importantUserId);
+      importantUser = BasicDBObject.parse("{\n"
+          +
+      "                    name: \"Get ID test\",\n" +
+      "                    officeID: \"1310\",\n" +
+      "                    building: \"Science\",\n" +
+      "                    email: \"rmjohns@morris.umn.edu\"\n" +
+      "                }");
       userDocuments.insertMany(testUsers);
+      userDocuments.insertOne(Document.parse(importantUser.toJson()));
 
       userController = new UserController(db);
   }
@@ -116,7 +129,41 @@ public class UserControllerSpec {
   // we want to make sure that we are actually getting all of the users for our user directory
   @Test
   public void GetAllUsers() throws IOException {
+    // Creating the fake javalin context
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/users");
+    userController.getUsers(ctx);
 
+    assertEquals(200, mockRes.getStatus());
+
+    String result = ctx.resultString();
+    assertEquals(db.getCollection("users").countDocuments(), JavalinJson.fromJson(result, User[].class).length);
+  }
+
+  @Test
+  public void GetUserWithExistingID() throws IOException {
+
+    mockReq.setMethod("GET");
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/user/:id", ImmutableMap.of("id", importantUserId.toHexString()));
+    userController.getUserById(ctx);
+
+    assertEquals(200, mockRes.getStatus());
+
+    String result = ctx.resultString();
+    User resultUser = JavalinJson.fromJson(result, User.class);
+
+    assertEquals(resultUser._id, importantUserId.toHexString());
+    assertEquals(resultUser.name, importantUser.get("name"));
+  }
+
+  @Test
+  public void TryGetUserWithoutID() throws IOException {
+
+    mockReq.setMethod("GET");
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/user/:id", ImmutableMap.of("id", "some garbage that doesn't work"));
+
+    assertThrows(BadRequestResponse.class, () -> {
+      userController.getUserById(ctx);
+    });
   }
 
   // if we end up allowing the addition of users, we'll want some testing for it

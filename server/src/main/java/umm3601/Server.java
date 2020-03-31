@@ -10,6 +10,7 @@ import com.mongodb.client.MongoDatabase;
 
 import io.javalin.Javalin;
 import umm3601.notes.NoteController;
+import umm3601.users.UserController;
 
 public class Server {
 
@@ -34,11 +35,18 @@ public class Server {
 
     // Initialize dependencies here ...
     NoteController noteController = new NoteController(database);
+    UserController userController = new UserController(database);
 
     Javalin server = Javalin.create().start(4567);
 
     // Get all notes
     server.get("api/notes", noteController::getNotes);
+
+    // Get all users
+    server.get("api/users", userController::getUsers);
+
+    // Get a specific user
+    server.get("api/users/:id", userController::getUserById);
 
     // Get all notes for a particular user
     server.get("api/notes/user/:id", noteController::getUserNotes);
