@@ -101,14 +101,11 @@ public class UserControllerSpec {
       "                }"));
 
       importantUserId = new ObjectId();
-      new BasicDBObject("_id", importantUserId);
-      importantUser = BasicDBObject.parse("{\n"
-          +
-      "                    name: \"Get ID test\",\n" +
-      "                    officeID: \"1310\",\n" +
-      "                    building: \"Science\",\n" +
-      "                    email: \"rmjohns@morris.umn.edu\"\n" +
-      "                }");
+      importantUser = new BasicDBObject("_id", importantUserId)
+      .append("name", "ID Testing")
+      .append("officeID", "1200")
+      .append("building", "mars")
+      .append("email", "test@email.com");
       userDocuments.insertMany(testUsers);
       userDocuments.insertOne(Document.parse(importantUser.toJson()));
 
@@ -143,7 +140,7 @@ public class UserControllerSpec {
   public void GetUserWithExistingID() throws IOException {
 
     mockReq.setMethod("GET");
-    Context ctx = ContextUtil.init(mockReq, mockRes, "api/user/:id", ImmutableMap.of("id", importantUserId.toHexString()));
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/users/:id", ImmutableMap.of("id", importantUserId.toHexString()));
     userController.getUserById(ctx);
 
     assertEquals(200, mockRes.getStatus());
@@ -153,6 +150,9 @@ public class UserControllerSpec {
 
     assertEquals(resultUser._id, importantUserId.toHexString());
     assertEquals(resultUser.name, importantUser.get("name"));
+    assertEquals(resultUser.officeID, importantUser.get("officeID"));
+    assertEquals(resultUser.building, importantUser.get("building"));
+    assertEquals(resultUser.email, importantUser.get("email"));
   }
 
   @Test

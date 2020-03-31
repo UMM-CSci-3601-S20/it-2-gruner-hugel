@@ -34,14 +34,25 @@ public class UserController {
   // UPDATE WHEN THIS STUB IS COMPLETED
   // I'm putting this here in case we want to have a list of users when navigating to a user profile.
   public void getUsers(Context ctx) {
-
+    ctx.json(userCollection.find(new Document()).into(new ArrayList<>()));
   }
 
   public void getUserById(Context ctx) {
+    String id = ctx.pathParam("id");
+    User user;
 
+    try {
+      user = userCollection.find(eq("_id", new ObjectId(id))).first();
+    } catch(IllegalArgumentException e) {
+      throw new BadRequestResponse("The requested user does not have a valid Mongo Object ID.");
+    } if (user == null) {
+      throw new NotFoundResponse("The requested user was not found.");
+    } else {
+      ctx.json(user);
+    }
   }
   // UPDATE WHEN THIS STUB IS COMPLETED
-  // While I don't thing we actually sold this feature, it would be nice if we were able to implement this as well.
+  // While I don't think we actually sold this feature, it would be nice if we were able to implement this as well.
   public void addUser(Context ctx) {
 
   }
