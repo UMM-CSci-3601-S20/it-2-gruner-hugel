@@ -7,7 +7,7 @@ import { UserService } from './user.service';
 
 describe('Note service:', () => {
   // pulled these from https://github.com/UMM-CSci-3601-S20/it-1-knights-who-say-ni
-  const testOwners: User[] = [
+  const testUsers: User[] = [
     {
       _id: 'testman_id',
       name: 'Test Man',
@@ -61,6 +61,21 @@ describe('Note service:', () => {
     httpTestingController.verify();
   });
 
-  // Insert tests here //
+  describe('GetUsers() method calls api/users', () => {
+    userService.getUsers().subscribe(users => expect(users).toBe(testUsers)
+    );
+
+    const req = httpTestingController.expectOne(userService.userUrl);
+    expect(req.request.method).toEqual('GET');
+    req.flush(testUsers);
+  });
+
+  describe('GetUserById() method calls api/users/:id', () => {
+    userService.getUserById('alien_id').subscribe(user => expect(user).toBe(testUsers[3]));
+
+    const req = httpTestingController.expectOne(userService.userUrl + '/alien_id');
+    expect(req.request.method).toEqual('GET');
+    req.flush(testUsers[3]);
+  });
 
 });
