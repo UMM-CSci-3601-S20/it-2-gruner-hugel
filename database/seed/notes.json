@@ -1,122 +1,27 @@
 [
   {
     "_id": {
-      "$oid": "58af3a600343927e48e8720f"
+      "$oid": "588935f57546a2daea44de7c"
     },
-    "body": "In sunt ex non tempor cillum commodo amet incididunt anim qui commodo quis. Cillum non labore ex sint esse."
+    "body": "This is the first message in the seed. (Santa)",
+    "user_id": "f386e1e41d73cb4e947a"
   },
   {
     "_id": {
-      "$oid": "58af3a600343927e48e87210"
+      "$oid": "588935f57546a2daea44de7d"
     },
-    "body": "Ipsum esse est ullamco magna tempor anim laborum non officia deserunt veniam commodo. Aute minim incididunt ex commodo."
+    "body": "This is the second message in the seed. (Batman)"
   },
   {
     "_id": {
-      "$oid": "58af3a600343927e48e87211"
+      "$oid": "588935f57546a2daea44de7e"
     },
-    "body": "Ullamco irure laborum magna dolor non. Anim occaecat adipisicing cillum eu magna in."
+    "body": "This is the third message in the seed. (Robert)"
   },
   {
     "_id": {
-      "$oid": "58af3a600343927e48e87212"
+      "$oid": "78f1d3bfa098879fe7a01373"
     },
-    "body": "Incididunt enim ea sit qui esse magna eu. Nisi sunt exercitation est Lorem consectetur incididunt cupidatat laboris commodo veniam do ut sint."
-  },
-  {
-    "_id": {
-      "$oid": "58af3a600343927e48e87213"
-    },
-    "body": "Aliqua esse aliqua veniam id nisi ea. Ullamco Lorem ex aliqua aliquip cupidatat incididunt reprehenderit voluptate ad nisi elit dolore laboris."
-  },
-  {
-    "_id": {
-      "$oid": "58af3a600343927e48e87214"
-    },
-    "body": "Nisi sit non non sunt veniam pariatur. Elit reprehenderit aliqua consectetur est dolor officia et adipisicing elit officia nisi elit enim nisi."
-  },
-  {
-    "_id": {
-      "$oid": "58af3a600343927e48e87215"
-    },
-    "body": "Laborum incididunt nisi eiusmod aliqua velit quis occaecat excepteur ut in ad. Commodo adipisicing sint ipsum irure amet exercitation voluptate mollit."
-  },
-  {
-    "_id": {
-      "$oid": "58af3a600343927e48e87216"
-    },
-    "body": "Nostrud ullamco labore exercitation magna. Excepteur aute aliqua veniam veniam nisi eu occaecat ea magna do."
-  },
-  {
-    "_id": {
-      "$oid": "58af3a600343927e48e87217"
-    },
-    "body": "Veniam ut ex sit voluptate Lorem. Laboris ipsum nulla proident aute culpa esse aute pariatur velit deserunt deserunt cillum officia dolore."
-  },
-  {
-    "_id": {
-      "$oid": "58af3a600343927e48e87218"
-    },
-    "body": "Eiusmod commodo officia amet aliquip est ipsum nostrud duis sunt voluptate mollit excepteur. Sunt non in pariatur et culpa est sunt."
-  },
-  {
-    "_id": {
-      "$oid": "58af3a600343927e48e87219"
-    },
-    "body": "Proident cupidatat exercitation id ullamco magna do qui aliquip id. Eiusmod labore non nostrud culpa duis incididunt incididunt esse occaecat amet officia."
-  },
-  {
-    "_id": {
-      "$oid": "58af3a600343927e48e8721a"
-    },
-    "body": "Excepteur irure et mollit esse laboris ad tempor ullamco. Eiusmod nostrud qui veniam adipisicing aliqua voluptate reprehenderit ut amet excepteur."
-  },
-  {
-    "_id": {
-      "$oid": "58af3a600343927e48e8721b"
-    },
-    "body": "Sunt esse dolore sunt Lorem velit reprehenderit incididunt minim Lorem sint Lorem sit voluptate proident. Veniam voluptate veniam aliqua ipsum cupidatat."
-  },
-  {
-    "_id": {
-      "$oid": "58af3a600343927e48e8721c"
-    },
-    "body": "Deserunt velit reprehenderit deserunt sunt excepteur sit eu eiusmod in voluptate aute minim mollit. Esse aliqua esse officia do proident non consequat non mollit."
-  },
-  {
-    "_id": {
-      "$oid": "58af3a600343927e48e8721d"
-    },
-    "body": "Magna exercitation pariatur in labore. Voluptate adipisicing reprehenderit dolor veniam dolore amet duis anim nisi."
-  },
-  {
-    "_id": {
-      "$oid": "58af3a600343927e48e8721e"
-    },
-    "body": "Est ex commodo laboris aliquip Lorem voluptate mollit sint ex consequat. Culpa eiusmod pariatur ex veniam exercitation qui."
-  },
-  {
-    "_id": {
-      "$oid": "58af3a600343927e48e8721f"
-    },
-    "body": "Id dolor culpa quis dolore elit sunt dolore. Amet adipisicing duis aliquip deserunt ut fugiat dolore."
-  },
-  {
-    "_id": {
-      "$oid": "58af3a600343927e48e87220"
-    },
-    "body": "Pariatur ea et incididunt tempor eu voluptate laborum irure cupidatat adipisicing. Consequat occaecat consectetur qui culpa dolor."
-  },
-  {
-    "_id": {
-      "$oid": "58af3a600343927e48e87221"
-    },
-    "body": "Officia labore pariatur ea commodo deserunt dolore. Adipisicing culpa ullamco nulla ullamco enim consequat ipsum excepteur."
-  },
-  {
-    "_id": {
-      "$oid": "58af3a600343927e48e87222"
-    },
-    "body": "Excepteur est anim ea nulla nisi veniam adipisicing voluptate ad nulla laborum eu do Lorem. Consequat consectetur velit Lorem irure consequat officia nostrud."
+    "body": "This is the fourth message in the seed. (Emily)"
   }
 ]

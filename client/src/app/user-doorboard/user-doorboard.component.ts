@@ -30,7 +30,7 @@ export class UserDoorBoardComponent implements OnInit, OnDestroy {
     this.route.paramMap.subscribe((pmap) => {
       this.id = pmap.get('id');
       this.getUserSub = this.userService.getUserById(this.id).subscribe(user => this.user = user);
-      this.getNotesSub = this.notesService.getUserNotes({ user_id: this.id }).subscribe(notes => this.notes = notes.reverse());
+      this.getNotesSub = this.notesService.getUserNotes({ user_id: this.id }).subscribe(notes => this.notes = notes);
 
     });
   }
