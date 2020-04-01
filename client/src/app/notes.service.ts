@@ -20,6 +20,10 @@ export class NotesService {
     return this.httpClient.get<Note[]>(this.noteUrl);
   }
 
+  getUserNotes(userid: string) {
+    return this.httpClient.get<Note[]>(this.noteUrl + '/user/' + userid);
+  }
+
   addNote(newNote: Note): Observable<string> {
     return this.httpClient.post<{id: string}>(this.noteUrl + '/new', newNote).pipe(map(res => res.id));
   }

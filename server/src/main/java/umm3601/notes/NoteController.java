@@ -3,16 +3,18 @@ package umm3601.notes;
 import static com.mongodb.client.model.Filters.eq;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.common.collect.ImmutableMap;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.DeleteResult;
 
-import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Updates.set;
 
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 import org.mongojack.JacksonCodecRegistry;
 
@@ -56,7 +58,14 @@ public class NoteController {
   }
 
   public void getUserNotes(Context ctx) {
+    List<Bson> filters = new ArrayList<Bson>();
 
+    if (ctx.queryParamMap().containsKey("user_id")) {
+      filters.add(eq("user_id", ctx.queryParam("user_id")));
+    }
+    else {throw new NotFoundResponse("The query param map does not contain the specified user id");}
+
+    ctx.json(noteCollection.find(filters.isEmpty() ? new Document() : and(filters)).into(new ArrayList<>()));
   }
 
   public void addNote(Context ctx) {

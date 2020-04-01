@@ -19,7 +19,7 @@ export class UserService {
 
   // needed for getting the user doorboards (we grab the user id from the url, and we need to get the actual user from that as well)
   getUserById(id: string) {
-    return null;
+    return this.httpClient.get<User>(this.userUrl + '/' + id);
   }
 
   // adding stub

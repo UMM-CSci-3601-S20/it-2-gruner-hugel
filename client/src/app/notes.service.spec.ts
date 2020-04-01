@@ -9,17 +9,17 @@ describe('Note service:', () => {
   const testNotes: Note[] = [
     {
       _id: 'first_id',
-      user_id: null,
+      user_id: 'testman_id',
       body: 'This is the first note'
     },
     {
       _id: 'second_id',
-      user_id: null,
+      user_id: 'spaceman_id',
       body: 'This is the second note'
     },
     {
       _id: 'third_id',
-      user_id: null,
+      user_id: 'cowtipper_id',
       body: 'This is the third note'
     },
   ];
@@ -139,4 +139,13 @@ describe('Note service:', () => {
       req.flush({id: 'testid'});
     });
   });
+// test currently broken because getUserNotes outputs an array of notes, and I'm expecting one entry from an array instead
+
+  // describe('getUserNotes calls api/notes/user/:id', () => {
+  //   noteService.getUserNotes('cowtipper_id').subscribe(note => expect(note).toBe(testNotes[2]));
+
+  //   const req = httpTestingController.expectOne(noteService.noteUrl + '/user/' + 'cowtipper_id');
+  //   expect (req.request.method).toEqual('GET');
+  //   req.flush(testNotes[2]);
+  // });
 });
