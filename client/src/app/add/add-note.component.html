@@ -6,6 +6,7 @@
           <mat-card-title class="add-note-title">New Note</mat-card-title>
         </mat-card-header>
         <mat-card-content fxLayout="column">
+
           <mat-form-field>
             <mat-label>Body</mat-label>
               <input matInput id="bodyField" placeholder="Body" formControlName="body"
@@ -15,6 +16,18 @@
                         *ngIf="addNoteForm.get('body').hasError(validation.type) && (addNoteForm.get('body').dirty || addNoteForm.get('body').touched)">
                 {{validation.message}}
               </mat-error>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select id="statusField" required formControlName="status" placeholder="status">
+              <mat-option value="commonly used">Commonly Used</mat-option>
+              <mat-option value="standard">Standard</mat-option>
+            </mat-select>
+            <mat-error *ngIf="addNoteForm.get('status').hasError('required')">You must make a selection</mat-error>
+            <mat-error *ngIf="addNoteForm.get('status').hasError('pattern') && !addNoteForm.get('status').hasError('required')">
+              Your selection is invalid
             </mat-error>
           </mat-form-field>
 
