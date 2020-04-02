@@ -28,6 +28,9 @@ export class EditComponent implements OnInit {
       {type: 'required', message: 'Body is required'},
       {type: 'minlength', message: 'Body must be at least 2 characters long'},
       {type: 'maxlength', message: 'Body cannot be more than 300 characters long'}
+    ],
+    status: [
+      {type: 'required', message: 'Status is required'}
     ]
   };
 
@@ -40,6 +43,9 @@ export class EditComponent implements OnInit {
         Validators.minLength(2),
         Validators.maxLength(300),
       ])),
+      status: new FormControl('', Validators.compose([
+        Validators.pattern('^(commonly used|standard)$')
+      ]))
     });
 
   }
