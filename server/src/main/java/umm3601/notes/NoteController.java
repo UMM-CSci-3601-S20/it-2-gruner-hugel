@@ -59,8 +59,10 @@ public class NoteController {
 
     Note newNote = ctx.bodyValidator(Note.class)
     .check((note) -> note.body.length() >= 2 && note.body.length() <= 300)
-    .check((note) -> note.status.matches("^(Commonly Used|Standard)$")).get();
+    .check((note) -> note.status.matches("^(commonly used|standard)$"))
+    .get();
 
+    System.out.println(newNote);
     noteCollection.insertOne(newNote);
     ctx.status(201);
     ctx.json(ImmutableMap.of("id", newNote._id));
@@ -71,9 +73,10 @@ public class NoteController {
 
     Note newNote= ctx.bodyValidator(Note.class)
     .check((note) -> note.body.length() >= 2 && note.body.length() <= 300)
-    .check((note) -> note.status.matches("^(commonly used|standard)$")).get();
+    .check((note) -> note.status.matches("^(commonly used|standard)$"))
+    .get();
+
     String newBody = newNote.body;
-    String newStatus = newNote.status;
 
     Note oldNote = noteCollection.findOneAndUpdate(eq("_id", new ObjectId(id)), set("body", newBody));
 
