@@ -58,7 +58,8 @@ public class NoteController {
   public void addNote(Context ctx) {
 
     Note newNote = ctx.bodyValidator(Note.class)
-    .check((note) -> note.body.length() >= 2 && note.body.length() <= 300).get();
+    .check((note) -> note.body.length() >= 2 && note.body.length() <= 300)
+    .check((note) -> note.status.matches("^(Commonly Used|Standard)$")).get();
 
     noteCollection.insertOne(newNote);
     ctx.status(201);
@@ -69,8 +70,10 @@ public class NoteController {
     String id = ctx.pathParamMap().get("id");
 
     Note newNote= ctx.bodyValidator(Note.class)
-    .check((note) -> note.body.length() >= 2 && note.body.length() <= 300).get();
+    .check((note) -> note.body.length() >= 2 && note.body.length() <= 300)
+    .check((note) -> note.status.matches("^(commonly used|standard)$")).get();
     String newBody = newNote.body;
+    String newStatus = newNote.status;
 
     Note oldNote = noteCollection.findOneAndUpdate(eq("_id", new ObjectId(id)), set("body", newBody));
 
