@@ -9,15 +9,18 @@ export class MockNoteService extends NotesService {
   static testNotes: Note[] = [
     {
       _id: 'first_id',
-      body: 'This is the first note'
+      body: 'This is the first note',
+      status: 'standard'
     },
     {
       _id: 'second_id',
-      body: 'This is the second note'
+      body: 'This is the second note',
+      status: 'standard'
     },
     {
       _id: 'third_id',
-      body: 'This is the third note'
+      body: 'This is the third note',
+      status: 'commonly used'
     }
   ];
 
