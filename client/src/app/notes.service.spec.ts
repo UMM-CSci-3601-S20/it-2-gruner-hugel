@@ -9,15 +9,18 @@ describe('Note service:', () => {
   const testNotes: Note[] = [
     {
       _id: 'first_id',
-      body: 'This is the first note'
+      body: 'This is the first note',
+      status: 'commonly used'
     },
     {
       _id: 'second_id',
-      body: 'This is the second note'
+      body: 'This is the second note',
+      status: 'standard'
     },
     {
       _id: 'third_id',
-      body: 'This is the third note'
+      body: 'This is the third note',
+      status: 'standard'
     },
   ];
   let noteService: NotesService;
@@ -52,6 +55,18 @@ describe('Note service:', () => {
 
       const req = httpTestingController.expectOne(noteService.noteUrl);
       expect(req.request.method).toEqual('GET');
+      req.flush(testNotes);
+    });
+    it('getNotes() calls api/notes with filter parameter \'status\'', () => {
+
+      noteService.getNotes({ status: 'commonly used'}).subscribe(
+        notes => expect(notes).toBe(testNotes)
+      );
+
+      // Specify that (exactly) one request will be made to the specified URL with the status parameter.
+      const req = httpTestingController.expectOne(
+        (request) => request.url.startsWith(noteService.noteUrl) && request.params.has('status')
+      );
       req.flush(testNotes);
     });
   });
