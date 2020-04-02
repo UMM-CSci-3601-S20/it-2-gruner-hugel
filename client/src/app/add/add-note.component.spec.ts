@@ -88,4 +88,12 @@ describe('AddNoteComponent:', () => {
     });
   });
 
+  describe('the status field:', ( ) => {
+    it('should allow empty values', () => {
+      const statusControl = addNoteForm.controls[`status`];
+      statusControl.setValue('');
+      expect(statusControl.valid).toBe(false);
+    });
+  });
+
 });

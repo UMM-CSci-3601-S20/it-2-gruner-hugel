@@ -97,4 +97,11 @@ describe('EditComponent', () => {
       expect(bodyControl.hasError('maxlength')).toBeTruthy();
     });
   });
+  describe('the status field:', ( ) => {
+    it('should allow empty values', () => {
+      const tagControl = editNoteForm.controls[`tag`];
+      tagControl.setValue('');
+      expect(tagControl.valid).toBe(false);
+    });
+  });
 });
