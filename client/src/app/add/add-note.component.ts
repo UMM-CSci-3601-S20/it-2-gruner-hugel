@@ -40,8 +40,8 @@ export class AddNoteComponent implements OnInit {
         Validators.maxLength(300),
       ])),
       status: new FormControl('', Validators.compose([
-        Validators.pattern('commonly used|standard)$')
-      ]))
+        Validators.pattern('^(commonly used|standard)$'),
+      ])),
     });
 
   }
