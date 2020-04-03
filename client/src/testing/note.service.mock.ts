@@ -50,6 +50,7 @@ export class MockNoteService extends NotesService {
     return of({
       _id: id,
       body: MockNoteService.FAKE_BODY,
+      status: MockNoteService.FAKE_STATUS,
     });
   }
 }
