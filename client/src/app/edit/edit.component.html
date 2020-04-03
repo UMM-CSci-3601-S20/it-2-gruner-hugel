@@ -20,8 +20,8 @@
           <mat-form-field>
             <mat-label>Status</mat-label>
             <mat-select id="statusField" required formControlName="status" placeholder="status">
-              <mat-option value="Commonly Used">Commonly Used</mat-option>
-              <mat-option value="Standard">Standard</mat-option>
+              <mat-option value="commonly used">Commonly Used</mat-option>
+              <mat-option value="standard">Standard</mat-option>
             </mat-select>
             <mat-error *ngFor="let validation of editNoteValidationMessages.status">
               <mat-error class="error-message" id="status-error"
