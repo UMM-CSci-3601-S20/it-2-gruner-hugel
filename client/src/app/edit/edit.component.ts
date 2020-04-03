@@ -59,6 +59,8 @@ export class EditComponent implements OnInit {
       }
       this.getNoteSub = this.noteService.getNoteById(this.id).subscribe(retrievedNote => this.
         editNoteForm.get('body').setValue(retrievedNote.body));
+      this.getNoteSub = this.noteService.getNoteById(this.id).subscribe(retrievedNote => this.
+        editNoteForm.get('status').setValue(retrievedNote.status));
     });
   }
 
