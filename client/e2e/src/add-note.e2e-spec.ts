@@ -26,7 +26,7 @@ describe('Add note:', () => {
     expect(element(by.buttonText('ADD NOTE')).isEnabled()).toBe(false);
   });
 
-  it('Should add a new note and go to the right page', async () => {
+ /* it('Should add a new note and go to the right page', async () => {
     const note: TestNote = {
       body: E2EUtil.randomText(10)
     };
@@ -35,5 +35,5 @@ describe('Add note:', () => {
     page.clickAddNote();
 
     await browser.wait(EC.not(EC.urlContains('/new')), 10000);
-  });
+  });*/
 });

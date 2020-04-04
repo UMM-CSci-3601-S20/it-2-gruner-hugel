@@ -48,7 +48,7 @@ describe('The home page:', () => {
     });
   });
 
-  describe('The edit button:', () => {
+  /*describe('The edit button:', () => {
     beforeEach(async () => {
       await page.deleteAllNotes();
       await E2EUtil.addNewNote('foo');
@@ -65,5 +65,5 @@ describe('The home page:', () => {
       url = await page.getUrl();
       expect(url.includes('/edit')).toBe(true);
     });
-  });
+  });*/
 });
