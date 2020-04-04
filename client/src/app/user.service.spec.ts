@@ -6,7 +6,7 @@ import { NotesService } from './notes.service';
 import { UserService } from './user.service';
 
 describe('Note service:', () => {
-  // pulled these from https://github.com/UMM-CSci-3601-S20/it-1-nights-who-say-ni
+  // pulled these from https://github.com/UMM-CSci-3601-S20/it-1-knights-who-say-ni
   const testUsers: User[] = [
     {
       _id: 'testman_id',
