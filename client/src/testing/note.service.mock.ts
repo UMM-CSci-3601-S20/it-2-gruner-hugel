@@ -9,19 +9,23 @@ export class MockNoteService extends NotesService {
   static testNotes: Note[] = [
     {
       _id: 'first_id',
-      body: 'This is the first note'
+      body: 'This is the first note',
+      user_id: 'Catherine of Aragon'
     },
     {
       _id: 'second_id',
-      body: 'This is the second note'
+      body: 'This is the second note',
+      user_id: 'Anne Boelyn'
     },
     {
       _id: 'third_id',
-      body: 'This is the third note'
+      body: 'This is the third note',
+      user_id: 'Jane Seymour'
     }
   ];
 
   public static FAKE_BODY = 'This is definitely the note you wanted';
+  public static FAKE_USER_ID = 'Anne of Cleves';
 
   constructor() {
     super(null);
@@ -47,6 +51,7 @@ export class MockNoteService extends NotesService {
     return of({
       _id: id,
       body: MockNoteService.FAKE_BODY,
+      user_id: MockNoteService.FAKE_USER_ID
     });
   }
 }

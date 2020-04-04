@@ -20,8 +20,8 @@ export class NotesService {
     return this.httpClient.get<Note[]>(this.noteUrl);
   }
 
-  getUserNotes(userid: string) {
-    return this.httpClient.get<Note[]>(this.noteUrl + '/user/' + userid);
+  getUserNotes(filters?: {user_id: string}) {
+    return this.httpClient.get<Note[]>(this.noteUrl + '/user/' + filters);
   }
 
   addNote(newNote: Note): Observable<string> {

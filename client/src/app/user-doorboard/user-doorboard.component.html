@@ -1,0 +1,28 @@
+<div class="doorboard-background" fxFill>
+  <div>
+    <!--Seems to be throwing error: "cannot read name of undefined once or twice while the page is loading, probably want to refactor this at some point-->
+    <mat-card class="user-card" *ngIf="user">
+      <h3>{{this.user.name + '\'s Doorboard'}}</h3>
+    </mat-card>
+    <div class="add-button-container">
+      <!--This is where we add our new notes. The user ID is automatically set for each new note to match the id of the user-->
+      <button mat-raised-button class="add-note-button" matTooltip="Add Note" matTooltipPosition="below"
+        routerLink="/user/{{this.id}}/notes/new">Add New Note
+      </button>
+    </div>
+    <div class="note-list-container">
+    <!--This is where we are looping through the notes that belong to each user-->
+    <mat-list fxLayout="row wrap" class="list-of-user-notes">
+      <mat-list-item *ngFor="let note of notes ; first as last " class="user-note">
+        <!--Each body is its own mat-card-->
+        <div fxFlex="column" class="list-of-notes">
+          <mat-card fxLayout="row wrap" class="note-card">
+            <p class="body-content">{{note.body}}</p>
+          </mat-card>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+
+  </div>
+</div>
