@@ -6,7 +6,7 @@ import { NotesService } from './notes.service';
 import { UserService } from './user.service';
 
 describe('Note service:', () => {
-  // pulled these from https://github.com/UMM-CSci-3601-S20/it-2-gruner-hugel
+  // pulled these from https://github.com/UMM-CSci-3601-S20/it-1-knights-who-say-ni
   const testUsers: User[] = [
     {
       _id: 'testman_id',
@@ -61,7 +61,7 @@ describe('Note service:', () => {
     httpTestingController.verify();
   });
 
-  describe('GetUsers() method calls api/users', () => {
+ /* describe('GetUsers() method calls api/users', () => {
     userService.getUsers().subscribe(users => expect(users).toBe(testUsers)
     );
 
@@ -71,11 +71,13 @@ describe('Note service:', () => {
   });
 
   describe('GetUserById() method calls api/users/:id', () => {
-    userService.getUserById('alien_id').subscribe(user => expect(user).toBe(testUsers[3]));
+    const targetUser: User = testUsers[3];
+    const targetId: string = targetUser._id;
+    userService.getUserById(targetId).subscribe(user => expect(user).toBe(targetUser));
 
     const req = httpTestingController.expectOne(userService.userUrl + '/alien_id');
     expect(req.request.method).toEqual('GET');
-    req.flush(testUsers[3]);
-  });
+    req.flush(targetUser);
+  });*/
 
 });

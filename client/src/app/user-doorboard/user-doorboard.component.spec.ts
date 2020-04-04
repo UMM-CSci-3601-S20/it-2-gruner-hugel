@@ -10,6 +10,7 @@ import { UserService } from '../user.service';
 import { NotesService } from '../notes.service';
 import { MockNoteService } from 'src/testing/note.service.mock';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('UserDoorBoardComponent', () => {
   let doorBoardComponent: UserDoorBoardComponent;
@@ -21,7 +22,8 @@ describe('UserDoorBoardComponent', () => {
       imports: [
         RouterTestingModule,
         MatCardModule,
-        MatListModule
+        MatListModule,
+        HttpClientTestingModule
       ],
       declarations: [UserDoorBoardComponent],
       providers: [

@@ -2,7 +2,7 @@
   <div>
     <!--Seems to be throwing error: "cannot read name of undefined once or twice while the page is loading, probably want to refactor this at some point-->
     <mat-card class="user-card" *ngIf="user">
-      <h3>{{this.user.name}}</h3>
+      <h3>{{this.user.name + '\'s Doorboard'}}</h3>
     </mat-card>
     <div class="add-button-container">
       <!--This is where we add our new notes. The user ID is automatically set for each new note to match the id of the user-->
