@@ -48,7 +48,7 @@ export class HomeComponent {
     }
   }
 
-  savePDF(): void {
+  /*savePDF(): void {
     this.pdfService.getPDF().save('DoorBoard');
-  }
+  }*/
 }
