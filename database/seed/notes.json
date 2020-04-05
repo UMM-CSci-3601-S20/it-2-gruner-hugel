@@ -4,24 +4,27 @@
       "$oid": "588935f57546a2daea44de7c"
     },
     "body": "This is the first message in the seed. (Santa)",
-    "user_id": "f386e1e41d73cb4e947a"
+    "user_id": "588935f57546a2daea44de7c"
   },
   {
     "_id": {
       "$oid": "588935f57546a2daea44de7d"
     },
-    "body": "This is the second message in the seed. (Batman)"
+    "body": "This is the second message in the seed. (Batman)",
+    "user_id": "588935f57546a2daea44de7d"
   },
   {
     "_id": {
       "$oid": "588935f57546a2daea44de7e"
     },
-    "body": "This is the third message in the seed. (Robert)"
+    "body": "This is the third message in the seed. (Robert)",
+    "user_id": "588935f57546a2daea44de7e"
   },
   {
     "_id": {
       "$oid": "78f1d3bfa098879fe7a01373"
     },
-    "body": "This is the fourth message in the seed. (Emily)"
+    "body": "This is the fourth message in the seed. (Emily)",
+    "user_id": "78f1d3bfa098879fe7a01373"
   }
 ]
