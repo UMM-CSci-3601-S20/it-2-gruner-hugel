@@ -7,13 +7,13 @@
     <div class="add-button-container">
       <!--This is where we add our new notes. The user ID is automatically set for each new note to match the id of the user-->
       <button mat-raised-button class="add-note-button" matTooltip="Add Note" matTooltipPosition="below"
-        routerLink="/user/{{this.id}}/notes/new">Add New Note
+        routerLink="/notes/user/{{this.id}}/new">Add New Note
       </button>
     </div>
     <div class="note-list-container">
     <!--This is where we are looping through the notes that belong to each user-->
     <mat-list fxLayout="row wrap" class="list-of-user-notes">
-      <mat-list-item *ngFor="let note of notes ; first as last " class="user-note">
+      <mat-list-item *ngFor="let note of notes" class="user-note">
         <!--Each body is its own mat-card-->
         <div fxFlex="column" class="list-of-notes">
           <mat-card fxLayout="row wrap" class="note-card">
