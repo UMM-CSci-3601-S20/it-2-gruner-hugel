@@ -49,6 +49,9 @@ public class Server {
     // Edit an existing note
     server.post("api/notes/edit/:id", noteController::editNote);
 
+    //Pin a note
+    server.post("api/notes/pin/:id", noteController::pinNote);
+
     // Delete a note
     server.delete("api/notes/:id", noteController::deleteNote);
 
