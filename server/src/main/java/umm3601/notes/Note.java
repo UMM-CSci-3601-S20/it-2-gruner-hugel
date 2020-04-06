@@ -10,4 +10,6 @@ public class Note {
 
   public String body;
 
+  public String pinned;
+
 }
