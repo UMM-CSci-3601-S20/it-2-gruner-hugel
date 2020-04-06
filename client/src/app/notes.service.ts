@@ -23,7 +23,7 @@ export class NotesService {
 
   getUserNotes(filters?: {user_id: string}): Observable<Note[]> {
     let httpParams: HttpParams = new HttpParams();
-    if(filters.user_id) {
+    if ( filters.user_id ) {
       httpParams = httpParams.set('user_id', filters.user_id);
     }
     return this.httpClient.get<Note[]>(this.noteUrl + '/user/' + filters.user_id, {

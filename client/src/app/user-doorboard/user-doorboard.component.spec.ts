@@ -11,6 +11,7 @@ import { NotesService } from '../notes.service';
 import { MockNoteService } from 'src/testing/note.service.mock';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { PDFService } from '../pdf.service';
 
 describe('UserDoorBoardComponent', () => {
   let doorBoardComponent: UserDoorBoardComponent;
@@ -28,7 +29,7 @@ describe('UserDoorBoardComponent', () => {
       declarations: [UserDoorBoardComponent],
       providers: [
         { provide: UserService, useValue: new MockUserService() },
-        // { provide: NotesService, useValue: new MockNotesService() },
+        { provide: NotesService, useValue: new MockNoteService() },
         { provide: ActivatedRoute, useValue: activatedRoute }
       ]
     })

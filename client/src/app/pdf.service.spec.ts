@@ -30,7 +30,7 @@ describe('The PDF Service:', () => {
 
     beforeEach(() => {
       pdfService = new PDFService();
-      doc = pdfService.getPDF() as RealJsPDF;
+      doc = pdfService.getPDF('userName') as RealJsPDF;
     });
 
     it('makes a document with exactly one page', () => {

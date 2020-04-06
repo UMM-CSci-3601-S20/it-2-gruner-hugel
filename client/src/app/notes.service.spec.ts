@@ -73,9 +73,9 @@ describe('Note service:', () => {
 
 
   describe('The addNote() method:', () => {
-    it('calls api/notes/new', () => {
+    it('calls api/notes/user/:id/new', () => {
 
-      noteService.addNote(testNotes[1]).subscribe(
+      noteService.addNote('first_id', testNotes[1]).subscribe(
         id => expect(id).toBe('testid')
       );
 
