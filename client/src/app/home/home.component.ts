@@ -25,6 +25,14 @@ export class HomeComponent {
     });
   }
 
+  pinNote(note: Note): void{
+    this.notesService.pinNote(note, note._id).subscribe(result => {
+      this.retrieveNotes();
+    }, err => {
+      console.log(err);
+    });
+  }
+
   deleteNote(id: string): void {
     this.notesService.deleteNote(id).subscribe(result => {
       // Ignore the result for now.
