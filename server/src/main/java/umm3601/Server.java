@@ -52,6 +52,9 @@ public class Server {
     //Pin a note
     server.post("api/notes/pin/:id", noteController::pinNote);
 
+    //Unpin a note
+    server.post("api/notes/unpin/:id", noteController::unpinNote);
+
     // Delete a note
     server.delete("api/notes/:id", noteController::deleteNote);
 

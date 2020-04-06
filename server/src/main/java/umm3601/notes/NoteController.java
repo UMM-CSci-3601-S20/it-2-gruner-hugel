@@ -97,6 +97,20 @@ public class NoteController {
     }
   }
 
+  public void unpinNote(Context ctx) {
+    String id = ctx.pathParamMap().get("id");
+
+    Note oldNote = noteCollection.findOneAndUpdate(eq("_id", new ObjectId(id)), set("pinned", "false"));
+
+    if (oldNote == null) {
+      ctx.status(400);
+      throw new NotFoundResponse("The requested note was not found");
+    } else {
+      ctx.status(200);
+      ctx.json(ImmutableMap.of("id", id));
+    }
+  }
+
   /**
    * Delete a note with a given id, if the id exists.
    *
