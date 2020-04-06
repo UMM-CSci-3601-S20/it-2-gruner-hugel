@@ -11,7 +11,6 @@
       <div *ngIf="this.note.pinned == 'true'">
         <mat-card class="note-card">
           <p> {{this.note.body}} </p>
-          <p> {{this.note.pinned}} </p>
           <mat-card-actions>
             <button mat-button class="note-action edit" [routerLink]="'/edit/' + note._id">
               <mat-icon aria-label="Edit note">edit</mat-icon>
@@ -33,7 +32,6 @@
     <div *ngIf="this.note.pinned == 'false'">
       <mat-card class="note-card">
         <p> {{this.note.body}} </p>
-        <p> {{this.note.pinned}} </p>
         <mat-card-actions>
           <button mat-button class="note-action edit" [routerLink]="'/edit/' + note._id">
             <mat-icon aria-label="Edit note">edit</mat-icon>
