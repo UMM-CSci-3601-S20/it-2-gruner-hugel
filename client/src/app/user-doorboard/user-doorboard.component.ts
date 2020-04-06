@@ -31,14 +31,14 @@ export class UserDoorBoardComponent implements OnInit, OnDestroy {
     this.route.paramMap.subscribe((pmap) => {
       this.id = pmap.get('id');
       this.getUserSub = this.userService.getUserById(this.id).subscribe(user => this.user = user);
-      this.getNotesSub = this.notesService.getUserNotes({ user_id: this.id }).subscribe(notes => this.notes = notes);
+      this.getNotesSub = this.notesService.getUserNotes({user_id: this.id}).subscribe(notes => this.notes = notes);
 
     });
   }
 
   retrieveNotes(): void {
     this.unsub();
-    this.getNotesSub = this.notesService.getNotes().subscribe(returnedNotes => {
+    this.getNotesSub = this.notesService.getUserNotes({user_id: this.id}).subscribe(returnedNotes => {
       this.notes = returnedNotes;
     }, err => {
       console.log(err);

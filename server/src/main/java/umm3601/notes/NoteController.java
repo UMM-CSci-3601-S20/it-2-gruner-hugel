@@ -73,6 +73,7 @@ public class NoteController {
     Note newNote = ctx.bodyValidator(Note.class)
     .check((note) -> note.body.length() >= 2 && note.body.length() <= 300).get();
 
+
     noteCollection.insertOne(newNote);
     ctx.status(201);
     ctx.json(ImmutableMap.of("id", newNote._id));

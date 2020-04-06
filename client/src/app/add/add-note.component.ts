@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Note } from '../note';
 import { NotesService } from '../notes.service';
 
@@ -15,8 +15,10 @@ export class AddNoteComponent implements OnInit {
   addNoteForm: FormGroup;
 
   note: Note;
+  id: string;
 
-  constructor(private fb: FormBuilder, private noteService: NotesService, private snackBar: MatSnackBar, private router: Router) {
+  constructor(private fb: FormBuilder, private noteService: NotesService, private snackBar: MatSnackBar, private router: Router,
+              private route: ActivatedRoute) {
   }
 
   addNoteValidationMessages = {
@@ -34,7 +36,7 @@ export class AddNoteComponent implements OnInit {
       body: new FormControl('', Validators.compose([
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(300),// Should be changed unless for formatting purposes
+        Validators.maxLength(300), // Should be changed unless for formatting purposes
       ])),
     });
 
@@ -42,14 +44,24 @@ export class AddNoteComponent implements OnInit {
 
   ngOnInit() {
     this.createForms();
+    // gets user id from api
+    this.route.paramMap.subscribe((pmap) => {
+      this.id = pmap.get('id');
+    });
   }
 
   submitForm() {
-    this.noteService.addNote(this.addNoteForm.value).subscribe(newID => {
+    const formResults = this.addNoteForm.value;
+    const newNote: Note = {
+      _id: undefined,
+      body: formResults.body,
+      user_id: this.id,
+    };
+    this.noteService.addNote(this.id, newNote).subscribe(() => {
       this.snackBar.open('Successfully added note', null, {
         duration: 2000,
       });
-      this.router.navigate(['']);
+      this.router.navigate(['/user/' + this.id]);
     }, err => {
       this.snackBar.open('Failed to add the note', null, {
         duration: 2000,
