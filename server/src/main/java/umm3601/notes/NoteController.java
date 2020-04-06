@@ -59,6 +59,7 @@ public class NoteController {
 
     Note newNote = ctx.bodyValidator(Note.class)
     .check((note) -> note.body.length() >= 2 && note.body.length() <= 300).get();
+    newNote.pinned = "false";
 
     noteCollection.insertOne(newNote);
     ctx.status(201);
