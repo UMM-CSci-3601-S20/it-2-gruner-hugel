@@ -54,4 +54,17 @@ export class MockNoteService extends NotesService {
       user_id: MockNoteService.FAKE_USER_ID
     });
   }
+// this should be refactored ASAP
+  getUserNotes({user_id: id}) {
+    // I have while x < 2 here because our test array only has 3 entries. If we modify that length this test won't work properly
+    for (let x = 0; x < 2; x++) {
+      // if an entry doesn't have the correct id
+      if (MockNoteService.testNotes[x].user_id !== id) {
+        // then remove it and reindex the array to all entries after
+        MockNoteService.testNotes.splice(x + 1, 2);
+        x++;
+       } else { x++; } // assertion: user_id === id, so we just iterate
+      }
+    return of(MockNoteService.testNotes);
+  }
 }

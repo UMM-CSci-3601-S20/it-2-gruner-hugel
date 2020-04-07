@@ -9,7 +9,6 @@ import { UserDoorBoardComponent } from './user-doorboard/user-doorboard.componen
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'new', component: AddNoteComponent},
   {path: 'viewers', component: ViewerPageComponent},
   {path: 'edit/:id', component: EditComponent},
   {path: 'user/:id/new', component: UserDoorBoardComponent},
