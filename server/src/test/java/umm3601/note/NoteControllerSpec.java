@@ -81,9 +81,18 @@ public class NoteControllerSpec {
     MongoCollection<Document> noteDocuments = db.getCollection("notes");
     noteDocuments.drop();
     List<Document> testNotes = new ArrayList<>();
-    testNotes.add(Document.parse("{ body: \"This is the first body\" }"));
-    testNotes.add(Document.parse("{ body: \"This is the second body\" }"));
-    testNotes.add(Document.parse("{ body: \"This is the third body\" }"));
+    testNotes.add(Document.parse("{\n" +
+    "                    body: \"I wanna say something,\",\n" +
+    "                    user_id: \"1310\",\n" +
+    "                }"));
+    testNotes.add(Document.parse("{\n" +
+    "                    body: \"I wanna say something 2,\",\n" +
+    "                    user_id: \"1311\",\n" +
+    "                }"));
+    testNotes.add(Document.parse("{\n" +
+    "                    body: \"I wanna say something 3,\",\n" +
+    "                    user_id: \"1312\",\n" +
+    "                }"));
 
     importantNoteId = new ObjectId();
     importantNote = new BasicDBObject("_id", importantNoteId)
@@ -269,5 +278,25 @@ public class NoteControllerSpec {
 
     assertEquals(0, db.getCollection("notes").countDocuments(eq("_id", wrongId)));
 
+  }
+
+  @Test
+  public void GetnotesByuser_id() throws IOException {
+
+    // Set the query string to test with
+    mockReq.setQueryString("user_id=1310");
+
+    // Create our fake Javalin context
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/notes/user/1310");
+
+    noteController.getUserNotes(ctx);
+
+    String result = ctx.resultString();
+    Note[] resultnotes = JavalinJson.fromJson(result, Note[].class);
+
+    assertEquals(1, resultnotes.length); // There should be one user returned
+    for (Note note : resultnotes) {
+      assertEquals("1310", note.user_id); // There should be one with that id
+    }
   }
 }

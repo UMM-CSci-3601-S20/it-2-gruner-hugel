@@ -4,6 +4,7 @@
   </button>
 </div>
 
+
 <div *ngIf="notes; else notesError">
 <ul class= "note-container">
   <mat-card class="note-card" *ngFor="let note of this.notes">

@@ -44,6 +44,9 @@ export class HomeComponent {
       this.getUsersSub.unsubscribe();
     }
   }
+  /*savePDF(): void {
+    this.pdfService.getPDF().save('DoorBoard');
+  }*/
 }
 
 //   public notes: Note[];

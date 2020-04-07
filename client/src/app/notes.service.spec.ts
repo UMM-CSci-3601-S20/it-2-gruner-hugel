@@ -73,13 +73,13 @@ describe('Note service:', () => {
 
 
   describe('The addNote() method:', () => {
-    it('calls api/notes/new', () => {
+    it('calls api/notes/user/:id/new', () => {
 
-      noteService.addNote(testNotes[1]).subscribe(
+      noteService.addNote('second_id', testNotes[1]).subscribe(
         id => expect(id).toBe('testid')
       );
 
-      const req = httpTestingController.expectOne(noteService.noteUrl + '/new');
+      const req = httpTestingController.expectOne(noteService.noteUrl + '/user/second_id/new');
 
       expect(req.request.method).toEqual('POST');
       expect(req.request.body).toEqual(testNotes[1]);

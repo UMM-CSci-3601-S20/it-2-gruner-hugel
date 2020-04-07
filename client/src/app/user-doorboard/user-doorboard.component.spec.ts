@@ -11,6 +11,8 @@ import { NotesService } from '../notes.service';
 import { MockNoteService } from 'src/testing/note.service.mock';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { PDFService } from '../pdf.service';
+import { Note } from '../note';
 
 describe('UserDoorBoardComponent', () => {
   let doorBoardComponent: UserDoorBoardComponent;
@@ -28,8 +30,9 @@ describe('UserDoorBoardComponent', () => {
       declarations: [UserDoorBoardComponent],
       providers: [
         { provide: UserService, useValue: new MockUserService() },
-        // { provide: NotesService, useValue: new MockNotesService() },
-        { provide: ActivatedRoute, useValue: activatedRoute }
+        { provide: NotesService, useValue: new MockNoteService() },
+        { provide: ActivatedRoute, useValue: activatedRoute },
+        { provide: PDFService, useValue: new PDFService() }
       ]
     })
       .compileComponents();
@@ -80,6 +83,13 @@ describe('UserDoorBoardComponent', () => {
     // to also be `null`.
     expect(doorBoardComponent.id).toEqual('badID');
     expect(doorBoardComponent.user).toBeNull();
+  });
+
+  it('should only show posts for the current user\'s page', () => {
+    let expectedUser: User = MockUserService.testUsers[0];
+    activatedRoute.setParamMap({ id: expectedUser._id });
+
+    expect(doorBoardComponent.notes.some((note: Note) => note.user_id === expectedUser._id)).toBe(true);
   });
 
 });

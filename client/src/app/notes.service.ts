@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { Note } from './note';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 
 export class NotesService {
 
   readonly noteUrl: string = environment.API_URL + 'notes';
+  readonly userUrl: string = environment.API_URL + 'user';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -20,12 +19,19 @@ export class NotesService {
     return this.httpClient.get<Note[]>(this.noteUrl);
   }
 
-  getUserNotes(filters?: {user_id: string}) {
-    return this.httpClient.get<Note[]>(this.noteUrl + '/user/' + filters);
+  getUserNotes(filters?: {user_id: string}): Observable<Note[]> {
+    let httpParams: HttpParams = new HttpParams();
+    if (filters.user_id) {
+      httpParams = httpParams.set('user_id', filters.user_id);
+    }
+    return this.httpClient.get<Note[]>(this.noteUrl + '/user/' + filters.user_id, {
+      params: httpParams,
+    });
   }
 
-  addNote(newNote: Note): Observable<string> {
-    return this.httpClient.post<{id: string}>(this.noteUrl + '/new', newNote).pipe(map(res => res.id));
+  addNote(id: string, newNote: Note): Observable<string> {
+    return this.httpClient.post<{id: string}>
+    (this.noteUrl + '/user/' + id + '/new', newNote).pipe(map(res => res.id));
   }
 
   /**
