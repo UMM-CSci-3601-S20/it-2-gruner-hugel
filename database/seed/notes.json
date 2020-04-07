@@ -1,6 +1,7 @@
 [
   {
     "_id": {
+
       "$oid": "588935f51234a2daea44de7c"
     },
     "body": "This is the first message in the seed. (Santa)",

@@ -75,7 +75,7 @@ describe('UserDoorBoardComponent', () => {
     expect(doorBoardComponent.id).toEqual(expectedUser._id);
   });
 
-  it('should have `null` for the user for a bad ID', () => {
+  it('should have `null` for the user with a bad ID', () => {
     activatedRoute.setParamMap({ id: 'badID' });
 
     // If the given ID doesn't map to a user, we expect the service

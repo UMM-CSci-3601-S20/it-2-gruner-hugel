@@ -1,3 +1,9 @@
+<!-- <div fxLayout="row" id="pdf-div">
+  <button mat-button id="generate-pdf-button" type="button" color="primary" (click)="savePDF()">
+    GENERATE PDF
+  </button>
+</div>
+
 
 <div *ngIf="notes; else notesError">
 <ul class= "note-container">
@@ -29,4 +35,26 @@
 
 <button mat-fab class="add-note-fab" matTooltip="Add Note" matTooltipPosition="left" routerLink="/new">
   <mat-icon class="md-24" aria-label="Add Note">add</mat-icon>
-</button>
+</button> -->
+
+<!--Keeping all this old code so we can reference it later if needed. Delete when cleaning up the iteration-->
+
+<div fxLayout="row">
+  <div *ngIf="users">
+
+  <div *ngIf="users">
+<ul class= "users-container">
+  <mat-card class="user-card" *ngFor="let user of this.users">
+    <p> {{this.user.name}} </p>
+    <p> {{this.user.building }}: {{this.user.officeID }}</p>
+    <p> {{this.user.email }} </p>
+    <mat-card-actions>
+      <button mat-button class="view-doorboard" [routerLink]="'/notes/user/' + user._id">
+        VIEW DOORBOARD
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</ul>
+</div>
+
+</div>
