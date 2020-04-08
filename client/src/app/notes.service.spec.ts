@@ -9,15 +9,18 @@ describe('Note service:', () => {
   const testNotes: Note[] = [
     {
       _id: 'first_id',
-      body: 'This is the first note'
+      body: 'This is the first note',
+      pinned: 'true'
     },
     {
       _id: 'second_id',
-      body: 'This is the second note'
+      body: 'This is the second note',
+      pinned: 'false'
     },
     {
       _id: 'third_id',
-      body: 'This is the third note'
+      body: 'This is the third note',
+      pinned: 'false'
     },
   ];
   let noteService: NotesService;

@@ -9,15 +9,18 @@ export class MockNoteService extends NotesService {
   static testNotes: Note[] = [
     {
       _id: 'first_id',
-      body: 'This is the first note'
+      body: 'This is the first note',
+      pinned: 'true'
     },
     {
       _id: 'second_id',
-      body: 'This is the second note'
+      body: 'This is the second note',
+      pinned: 'false'
     },
     {
       _id: 'third_id',
-      body: 'This is the third note'
+      body: 'This is the third note',
+      pinned: 'false'
     }
   ];
 
@@ -47,6 +50,7 @@ export class MockNoteService extends NotesService {
     return of({
       _id: id,
       body: MockNoteService.FAKE_BODY,
+      pinned: MockNoteService.testNotes[2].pinned
     });
   }
 }
