@@ -9,8 +9,8 @@ export class PDFService {
   }
 
   /**
-   * Returns a jsPDF object with a link to Professor Rachel's
-   * DoorBoard viewer page.
+   * Returns a jsPDF object with a link to a user's
+   * DoorBoard page.
    */
   getPDF(userName: string, userID: string): jsPDF {
     const url: string = environment.BASE_URL + '/notes/user/' + userID ;

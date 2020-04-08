@@ -34,5 +34,14 @@
     "officeID": "118",
     "email": "bruce088@morris.umn.edu",
     "building": "Camden"
+  },
+  {
+    "_id": {
+      "$oid": "12345678910111213141516a"
+    },
+    "name": "Rachel Johnson",
+    "officeID": "1310",
+    "email": "rmjohnson@morris.umn.edu",
+    "building": "Science"
   }
 ]

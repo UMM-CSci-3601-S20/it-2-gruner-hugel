@@ -27,5 +27,12 @@
     },
     "body": "This is the fourth message in the seed. (Emily)",
     "user_id": "78f1d3bfa098879fe7a01373"
+  },
+  {
+    "_id": {
+      "$oid": "abcdefghijklmnopqrstuvwx"
+    },
+    "body": "Hello Rachel!",
+    "user_id": "12345678910111213141516a"
   }
 ]
