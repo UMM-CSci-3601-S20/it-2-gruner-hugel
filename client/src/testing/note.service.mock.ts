@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { NotesService } from '../app/notes.service';
 import { Note } from '../app/note';
 import { of } from 'rxjs';
+import { Mock } from 'protractor/built/driverProviders';
 
 @Injectable()
 export class MockNoteService extends NotesService {
@@ -55,16 +56,25 @@ export class MockNoteService extends NotesService {
     });
   }
 // this should be refactored ASAP
-  getUserNotes({user_id: id}) {
-    // I have while x < 2 here because our test array only has 3 entries. If we modify that length this test won't work properly
-    for (let x = 0; x < MockNoteService.testNotes.length; x++) {
-      // if an entry doesn't have the correct id
+  // getUserNotes({user_id: id}) {
+  //   for (let x = 0; x < MockNoteService.testNotes.length; x++) {
+  //     // if an entry doesn't have the correct id
+  //     if (MockNoteService.testNotes[x].user_id !== id) {
+  //       // then remove it and re-index the array to all entries after
+  //       MockNoteService.testNotes.splice(x, 1);
+  //      } else {} // assertion: user_id === id, so we just iterate
+  //     }
+  //   return of(MockNoteService.testNotes);
+  // }
+
+  getUserNotes({user_id: id }) {
+    let x = 0;
+    while (x < MockNoteService.testNotes.length) {
       if (MockNoteService.testNotes[x].user_id !== id) {
-        // then remove it and reindex the array to all entries after
         MockNoteService.testNotes.splice(x, 1);
         x++;
-       } else { x++; } // assertion: user_id === id, so we just iterate
-      }
+      } else { x++; }
+    }
     return of(MockNoteService.testNotes);
   }
 }

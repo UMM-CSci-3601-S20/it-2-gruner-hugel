@@ -1,4 +1,4 @@
-/*import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {HomeComponent} from './home.component';
 import {DebugElement} from '@angular/core';
 import {By} from '@angular/platform-browser';
@@ -51,13 +51,14 @@ describe('Home:', () => {
   });
   // this component no longer does this, but I'm keeping it for when we need doorboard testing on this stuff
 
-  // describe('The retrieveNotes() method:', () => {
+  // describe('The retrieveUsers() method:', () => {
 
-  //   it('gets all the notes from the server', () =>{
-  //     component.retrieveNotes();
+  //   it('gets all the users from the server', () =>{
+  //     component.retrieveUsers();
 
-  //     expect(component.notes.length).toBe(3);
+  //     expect(component.users.length).toBe(4);
   //   });
+  // });
 
   //   it('contains a note with body \'This is the first note\'', () => {
   //     component.retrieveNotes();
@@ -91,4 +92,4 @@ describe('Home:', () => {
   // });
 
 });
-*/
+

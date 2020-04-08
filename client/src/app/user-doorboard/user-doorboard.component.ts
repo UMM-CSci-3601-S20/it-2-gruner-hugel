@@ -58,6 +58,9 @@ export class UserDoorBoardComponent implements OnInit, OnDestroy {
     if (this.getNotesSub) {
       this.getNotesSub.unsubscribe();
     }
+    if (this.getUserSub) {
+      this.getUserSub.unsubscribe();
+    }
   }
 
   savePDF(): void {
@@ -65,12 +68,7 @@ export class UserDoorBoardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.getNotesSub) {
-      this.getNotesSub.unsubscribe();
-    }
-    if (this.getUserSub) {
-      this.getUserSub.unsubscribe();
-    }
+    this.unsub();
   }
 
 }
