@@ -20,7 +20,7 @@
       <mat-list-item *ngFor="let note of notes; first as last" class="user-note">
         <p> {{this.note.body}} </p>
         <mat-card-actions>
-          <button mat-button class="note-action edit" [routerLink]="'/edit/' + note._id">
+          <button mat-button class="note-action edit" [routerLink]="'/notes/edit/' + this.id + '/' + note._id">
             <mat-icon aria-label="Edit note">create</mat-icon>
           </button>
           <button mat-button class="note-action delete" (click)="deleteNote(note._id);">

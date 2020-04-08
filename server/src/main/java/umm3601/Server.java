@@ -58,7 +58,7 @@ public class Server {
     server.get("api/notes/:id", noteController::getNoteByID);
 
     // Edit an existing note
-    server.post("api/notes/edit/:id", noteController::editNote);
+    server.post("api/notes/edit/:userID/:id", noteController::editNote);
 
     // Delete a note
     server.delete("api/notes/:id", noteController::deleteNote);

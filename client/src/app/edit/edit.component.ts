@@ -18,6 +18,7 @@ export class EditComponent implements OnInit {
 
   note: Note;
   id: string;
+  userID: string;
   getNoteSub: Subscription;
 
   constructor(private fb: FormBuilder, private noteService: NotesService, private snackBar: MatSnackBar, private router: Router, private route: ActivatedRoute) {
@@ -48,6 +49,7 @@ export class EditComponent implements OnInit {
     this.createForms();
     this.route.paramMap.subscribe((pmap) => {
       this.id = pmap.get('id');
+      this.userID = pmap.get('userID');
       if (this.getNoteSub) {
         this.getNoteSub.unsubscribe();
       }
@@ -61,7 +63,7 @@ export class EditComponent implements OnInit {
       this.snackBar.open('Successfully edited note', null, {
         duration: 2000,
       });
-      this.router.navigate(['']);
+      this.router.navigate(['notes/user/' + this.userID]);
     }, err => {
       this.snackBar.open('Failed to edit the note', null, {
         duration: 2000,

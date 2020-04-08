@@ -61,7 +61,7 @@ export class UserDoorBoardComponent implements OnInit, OnDestroy {
   }
 
   savePDF(): void {
-    this.pdfService.getPDF(this.user.name).save('DoorBoard.pdf');
+    this.pdfService.getPDF(this.user.name, this.user._id).save('DoorBoard.pdf');
   }
 
   ngOnDestroy(): void {

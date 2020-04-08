@@ -57,7 +57,7 @@ export class NotesService {
   }
 
   editNote(editNote: Note, id: string): Observable<string> {
-    return this.httpClient.post<{id: string}>(this.noteUrl + '/edit/' + id, editNote).pipe(map(res => res.id));
+    return this.httpClient.post<{id: string}>(this.noteUrl + '/edit/' + editNote.user_id + '/' + id, editNote).pipe(map(res => res.id));
   }
 
   getNoteById(id: string): Observable<Note> {
