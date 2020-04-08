@@ -14,22 +14,21 @@
         Download PDF
       </button>
     </div>
-    <div class="note-list-container">
-    <!--This is where we are looping through the notes that belong to each user-->
-    <mat-list fxLayout="row wrap" class="list-of-user-notes">
-      <mat-list-item *ngFor="let note of notes; first as last" class="user-note">
-        <p> {{this.note.body}} </p>
-        <mat-card-actions>
-          <button mat-button class="note-action edit" [routerLink]="'/notes/edit/' + this.id + '/' + note._id">
-            <mat-icon aria-label="Edit note">create</mat-icon>
-          </button>
-          <button mat-button class="note-action delete" (click)="deleteNote(note._id);">
-            <mat-icon aria-label="Delete note">delete</mat-icon>
-          </button>
-        </mat-card-actions>
-      </mat-list-item>
-    </mat-list>
-  </div>
+    <div *ngIf="notes">
+      <ul class= "note-container">
+        <mat-card class="note-card" *ngFor="let note of this.notes">
+          <p> {{this.note.body}} </p>
+          <mat-card-actions>
+            <button mat-button class="note-action edit" [routerLink]="'/notes/edit/' + user._id + '/' + note._id">
+              <mat-icon aria-label="Edit note">create</mat-icon>
+            </button>
+            <button mat-button class="note-action delete" (click)="deleteNote(note._id);">
+              <mat-icon aria-label="Delete note">delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </ul>
+      </div>
 
   </div>
 </div>
