@@ -44,6 +44,14 @@ export class UserDoorBoardComponent implements OnInit, OnDestroy {
     });
   }
 
+  unpinNote(note: Note): void{
+    this.notesService.unpinNote(note, note._id).subscribe(result => {
+      this.retrieveNotes();
+    }, err => {
+      console.log(err);
+    });
+  }
+
   retrieveNotes(): void {
     this.unsub();
     this.getNotesSub = this.notesService.getUserNotes({user_id: this.id}).subscribe(returnedNotes => {
