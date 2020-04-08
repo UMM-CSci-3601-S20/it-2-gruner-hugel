@@ -22,6 +22,11 @@ describe('Note service:', () => {
       user_id: 'cowtipper_id',
       body: 'This is the third note'
     },
+    {
+      _id: 'fourth_id',
+      user_id: 'cowtipper_id',
+      body: 'This is the fourth note'
+    },
   ];
   let noteService: NotesService;
   // These are used to mock the HTTP requests so that we (a) don't have to
@@ -124,14 +129,15 @@ describe('Note service:', () => {
   describe('The editNote() method:', () => {
     it('calls api/notes/edit/:id', () => {
       const newNote = {
-        body: 'We sailed on the Sloop John B / My grandfather and me'
+        body: 'We sailed on the Sloop John B / My grandfather and me',
+        user_id: 'id'
       } as Note;
 
       noteService.editNote(newNote, 'testid').subscribe(
         id => expect(id).toBe('testid')
       );
 
-      const req = httpTestingController.expectOne(noteService.noteUrl + '/edit/testid');
+      const req = httpTestingController.expectOne(noteService.noteUrl + '/edit/' + newNote.user_id + '/testid');
 
       expect(req.request.method).toEqual('POST');
       expect(req.request.body).toEqual(newNote);
@@ -141,11 +147,13 @@ describe('Note service:', () => {
   });
 // test currently broken because getUserNotes outputs an array of notes, and I'm expecting one entry from an array instead
 
-  // describe('getUserNotes calls api/notes/user/:id', () => {
-  //   noteService.getUserNotes('cowtipper_id').subscribe(note => expect(note).toBe(testNotes[2]));
+  describe('getUserNotes() method:', () => {
+    it('calls api/notes/user/:id', () => {
+      noteService.getUserNotes({user_id: 'cowtipper_id'}).subscribe(note => expect(note).toContain(testNotes[2]));
 
-  //   const req = httpTestingController.expectOne(noteService.noteUrl + '/user/' + 'cowtipper_id');
-  //   expect (req.request.method).toEqual('GET');
-  //   req.flush(testNotes[2]);
-  // });
+      const req = httpTestingController.expectOne(noteService.noteUrl + '/user/' + 'cowtipper_id?user_id=cowtipper_id');
+      expect (req.request.method).toEqual('GET');
+      req.flush(testNotes[2]);
+    });
+  });
 });

@@ -5,7 +5,7 @@ import { User } from './user';
 import { NotesService } from './notes.service';
 import { UserService } from './user.service';
 
-describe('Note service:', () => {
+describe('User service:', () => {
   // pulled these from https://github.com/UMM-CSci-3601-S20/it-1-knights-who-say-ni
   const testUsers: User[] = [
     {
@@ -61,23 +61,28 @@ describe('Note service:', () => {
     httpTestingController.verify();
   });
 
- /* describe('GetUsers() method calls api/users', () => {
-    userService.getUsers().subscribe(users => expect(users).toBe(testUsers)
-    );
+  describe('The getUsers() method:', () => {
+    it('calls api/users', () => {
+      userService.getUsers().subscribe(
+        users => expect(users).toBe(testUsers)
+      );
 
-    const req = httpTestingController.expectOne(userService.userUrl);
-    expect(req.request.method).toEqual('GET');
-    req.flush(testUsers);
+      const req = httpTestingController.expectOne(userService.userUrl);
+      expect(req.request.method).toEqual('GET');
+      req.flush(testUsers);
+    });
   });
 
-  describe('GetUserById() method calls api/users/:id', () => {
-    const targetUser: User = testUsers[3];
-    const targetId: string = targetUser._id;
-    userService.getUserById(targetId).subscribe(user => expect(user).toBe(targetUser));
+  describe('The getUserById() method:', () => {
+    it('calls api/users/:id', () => {
+      userService.getUserById('testman_id').subscribe(
+        user => expect(user).toBe(testUsers[0])
+      );
 
-    const req = httpTestingController.expectOne(userService.userUrl + '/alien_id');
-    expect(req.request.method).toEqual('GET');
-    req.flush(targetUser);
-  });*/
+      const req = httpTestingController.expectOne(userService.userUrl + '/testman_id');
+      expect(req.request.method).toEqual('GET');
+      req.flush(testUsers[0]);
+    });
+  });
 
 });

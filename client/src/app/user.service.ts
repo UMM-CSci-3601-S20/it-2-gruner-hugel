@@ -21,18 +21,4 @@ export class UserService {
   getUserById(id: string) {
     return this.httpClient.get<User>(this.userUrl + '/' + id);
   }
-
-  // adding stub
-  addUser(newUser: User): Observable<string> {
-    return null;
-  }
-  // deletion stub
-  // this may end being complicated if you have to also delete all the user's messages as well
-  deleteUser(id: string): Observable<boolean> {
-    return null;
-  }
-  // editing stub
-  editUser(editUser: User, id: string): Observable<string> {
-    return null;
-  }
 }

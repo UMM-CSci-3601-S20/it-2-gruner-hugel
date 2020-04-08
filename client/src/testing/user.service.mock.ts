@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { User } from '../app/user';
 import { UserService } from '../app/user.service';
 
+
 /**
  * A "mock" version of the `UserService` that can be used to test components
  * without having to create an actual service.
