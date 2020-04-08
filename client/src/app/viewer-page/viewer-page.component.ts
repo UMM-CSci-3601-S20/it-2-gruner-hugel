@@ -26,7 +26,6 @@ export class ViewerPageComponent implements OnInit {
     this.unsub();
     this.getNotesSub = this.notesService.getUserNotes({user_id: this.id }).subscribe(returnedNotes =>{
       this.notes = returnedNotes;
-      this.getUserSub = this.userService.getUserById(this.id).subscribe(user => this.user = user);
     }, err => {
       console.log(err);
     });
@@ -35,8 +34,8 @@ export class ViewerPageComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((pmap) => {
       this.id = pmap.get('id');
-
-    })
+      this.getUserSub = this.userService.getUserById(this.id).subscribe(user => this.user = user);
+    });
     this.retrieveNotes();
   }
 
