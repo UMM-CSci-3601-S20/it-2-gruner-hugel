@@ -11,5 +11,6 @@ public class Note {
   // our notes need the user id to associate themselves with the proper user's doorboard
   public String body;
   public String user_id;
+  public String pinned;
 
 }

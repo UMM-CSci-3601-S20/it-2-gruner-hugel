@@ -11,17 +11,20 @@ export class MockNoteService extends NotesService {
     {
       _id: 'first_id',
       body: 'This is the first note',
-      user_id: 'Catherine of Aragon'
+      user_id: 'Catherine of Aragon',
+      pinned: 'false'
     },
     {
       _id: 'second_id',
       body: 'This is the second note',
-      user_id: 'Anne Boleyn'
+      user_id: 'Anne Boleyn',
+      pinned: 'false'
     },
     {
       _id: 'third_id',
       body: 'This is the third note',
-      user_id: 'Jane Seymour'
+      user_id: 'Jane Seymour',
+      pinned: 'false'
     }
   ];
 
@@ -52,7 +55,8 @@ export class MockNoteService extends NotesService {
     return of({
       _id: id,
       body: MockNoteService.FAKE_BODY,
-      user_id: MockNoteService.FAKE_USER_ID
+      user_id: MockNoteService.FAKE_USER_ID,
+      pinned: 'false'
     });
   }
 // this should be refactored ASAP

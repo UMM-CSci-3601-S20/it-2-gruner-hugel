@@ -20,7 +20,7 @@ describe('Home:', () => {
   let de: DebugElement;
   let el: HTMLElement;
   let mockPDFService: MockPDFService;
-  let mockNoteService: MockNoteService;
+  // let mockNoteService: MockNoteService;
   let mockUserService: MockUserService;
 
   beforeEach(() => {

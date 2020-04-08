@@ -10,17 +10,20 @@ describe('Note service:', () => {
     {
       _id: 'first_id',
       user_id: 'testman_id',
-      body: 'This is the first note'
+      body: 'This is the first note',
+      pinned: 'false',
     },
     {
       _id: 'second_id',
       user_id: 'spaceman_id',
-      body: 'This is the second note'
+      body: 'This is the second note',
+      pinned: 'false',
     },
     {
       _id: 'third_id',
       user_id: 'cowtipper_id',
-      body: 'This is the third note'
+      body: 'This is the third note',
+      pinned: 'false',
     },
   ];
   let noteService: NotesService;
@@ -125,7 +128,8 @@ describe('Note service:', () => {
     it('calls api/notes/edit/:id', () => {
       const newNote = {
         body: 'We sailed on the Sloop John B / My grandfather and me',
-        user_id: 'id'
+        user_id: 'id',
+        pinned: 'false'
       } as Note;
 
       noteService.editNote(newNote, 'testid').subscribe(

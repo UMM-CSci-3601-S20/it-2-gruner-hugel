@@ -56,6 +56,7 @@ export class AddNoteComponent implements OnInit {
       _id: undefined,
       body: formResults.body,
       user_id: this.id,
+      pinned: 'false',
     };
     this.noteService.addNote(this.id, newNote).subscribe(() => {
       this.snackBar.open('Successfully added note', null, {

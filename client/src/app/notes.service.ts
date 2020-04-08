@@ -60,6 +60,10 @@ export class NotesService {
     return this.httpClient.post<{id: string}>(this.noteUrl + '/edit/' + editNote.user_id + '/' + id, editNote).pipe(map(res => res.id));
   }
 
+  pinNote(pinNote: Note, id: string): Observable<string> {
+    return this.httpClient.post<{id: string}>(this.noteUrl + '/pin/' + id, pinNote).pipe(map(res => res.id));
+  }
+
   getNoteById(id: string): Observable<Note> {
     return this.httpClient.get<Note>(this.noteUrl + '/' + id);
   }

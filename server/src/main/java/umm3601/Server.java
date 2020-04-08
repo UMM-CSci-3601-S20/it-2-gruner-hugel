@@ -24,11 +24,8 @@ public class Server {
     String databaseName = System.getenv().getOrDefault("MONGO_DB", "dev");
 
     // Setup the MongoDB client object with the information we set earlier
-    MongoClient mongoClient = MongoClients.create(
-      MongoClientSettings.builder()
-      .applyToClusterSettings(builder ->
-        builder.hosts(Arrays.asList(new ServerAddress(mongoAddr))))
-      .build());
+    MongoClient mongoClient = MongoClients.create(MongoClientSettings.builder()
+        .applyToClusterSettings(builder -> builder.hosts(Arrays.asList(new ServerAddress(mongoAddr)))).build());
 
     // Get the database
     database = mongoClient.getDatabase(databaseName);
@@ -62,6 +59,9 @@ public class Server {
 
     // Delete a note
     server.delete("api/notes/:id", noteController::deleteNote);
+
+    // Pin a note
+    server.post("api/notes/pin/:id", noteController::pinNote);
 
     server.exception(Exception.class, (e, ctx) -> {
       ctx.status(500);

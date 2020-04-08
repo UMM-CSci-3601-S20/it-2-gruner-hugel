@@ -112,4 +112,18 @@ public class NoteController {
       ctx.result(NOT_DELETED_RESPONSE);
     }
   }
+
+  public void pinNote(Context ctx) {
+    String id = ctx.pathParamMap().get("id");
+
+    Note oldNote = noteCollection.findOneAndUpdate(eq("_id", new ObjectId(id)), set("pinned", "true"));
+
+    if (oldNote == null) {
+      ctx.status(400);
+      throw new NotFoundResponse("The requested note was not found");
+    } else {
+      ctx.status(200);
+      ctx.json(ImmutableMap.of("id", id));
+    }
+  }
 }

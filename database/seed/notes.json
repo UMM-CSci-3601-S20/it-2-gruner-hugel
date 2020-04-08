@@ -5,34 +5,39 @@
       "$oid": "588935f51234a2daea44de7c"
     },
     "body": "This is the first message in the seed. (Santa)",
-    "user_id": "588935f57546a2daea44de7c"
+    "user_id": "588935f57546a2daea44de7c",
+    "pinned": "false"
   },
   {
     "_id": {
       "$oid": "512335f57546a2daea44de7d"
     },
     "body": "This is the second message in the seed. (Batman)",
-    "user_id": "588935f57546a2daea44de7d"
+    "user_id": "588935f57546a2daea44de7d",
+    "pinned": "false"
   },
   {
     "_id": {
       "$oid": "588321f57546a2daea44de7e"
     },
     "body": "This is the third message in the seed. (Robert)",
-    "user_id": "588935f57546a2daea44de7e"
+    "user_id": "588935f57546a2daea44de7e",
+    "pinned": "false"
   },
   {
     "_id": {
       "$oid": "78f1d3bfa078979fe7a01373"
     },
     "body": "This is the fourth message in the seed. (Emily)",
-    "user_id": "78f1d3bfa098879fe7a01373"
+    "user_id": "78f1d3bfa098879fe7a01373",
+    "pinned": "false"
   },
   {
     "_id": {
-      "$oid": "abcdefghijklmnopqrstuvwx"
+      "$oid": "24fcdf65114864f87ccfd99e"
     },
     "body": "Hello Rachel!",
-    "user_id": "12345678910111213141516a"
+    "user_id": "12345678910111213141516a",
+    "pinned": "false"
   }
 ]
