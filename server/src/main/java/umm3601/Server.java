@@ -63,6 +63,9 @@ public class Server {
     // Pin a note
     server.post("api/notes/pin/:id", noteController::pinNote);
 
+    // Unpin a note
+    server.post("api/notes/unpin/:id", noteController::unpinNote);
+
     server.exception(Exception.class, (e, ctx) -> {
       ctx.status(500);
       ctx.json(e); // you probably want to remove this in production
