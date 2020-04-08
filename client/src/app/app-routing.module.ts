@@ -9,11 +9,10 @@ import { UserDoorBoardComponent } from './user-doorboard/user-doorboard.componen
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'viewers', component: ViewerPageComponent},
+  {path: 'notes/user/:id/viewer', component: ViewerPageComponent},
   {path: 'edit/:id', component: EditComponent},
-  {path: 'user/:id/new', component: UserDoorBoardComponent},
-  {path: 'user/:id', component: UserDoorBoardComponent},                      
-  {path: 'user/:id/notes/new', component: AddNoteComponent}
+  {path: 'notes/user/:id', component: UserDoorBoardComponent},
+  {path: 'notes/user/:id/new', component: AddNoteComponent}
 ];
 
 @NgModule({
