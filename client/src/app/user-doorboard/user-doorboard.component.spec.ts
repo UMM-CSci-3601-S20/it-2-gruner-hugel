@@ -95,7 +95,7 @@ describe('UserDoorBoardComponent', () => {
 // should be true but returns false rn.
     expect(doorBoardComponent.notes.some((note: Note) => note.user_id === expectedUser._id)).toBe(false);
   });
-
+// actually just gets the notes for a given user
   describe('The retrieveNotes() Method:', () => {
     it('gets all the notes from the server', () => {
       doorBoardComponent.retrieveNotes();
