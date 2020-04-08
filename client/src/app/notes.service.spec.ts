@@ -22,11 +22,6 @@ describe('Note service:', () => {
       user_id: 'cowtipper_id',
       body: 'This is the third note'
     },
-    {
-      _id: 'fourth_id',
-      user_id: 'cowtipper_id',
-      body: 'This is the fourth note'
-    },
   ];
   let noteService: NotesService;
   // These are used to mock the HTTP requests so that we (a) don't have to
@@ -149,7 +144,8 @@ describe('Note service:', () => {
 
   describe('getUserNotes() method:', () => {
     it('calls api/notes/user/:id', () => {
-      noteService.getUserNotes({user_id: 'cowtipper_id'}).subscribe(note => expect(note).toContain(testNotes[2]));
+      noteService.getUserNotes({user_id: 'cowtipper_id'}).subscribe(notes => expect(notes)
+      .toEqual(jasmine.objectContaining(testNotes[2])));
 
       const req = httpTestingController.expectOne(noteService.noteUrl + '/user/' + 'cowtipper_id?user_id=cowtipper_id');
       expect (req.request.method).toEqual('GET');
