@@ -13,7 +13,7 @@
           <p> {{this.note.body}} </p>
           <mat-card-actions>
             <button mat-button class="note-action edit" [routerLink]="'/edit/' + note._id">
-              <mat-icon aria-label="Edit note">edit</mat-icon>
+              <mat-icon aria-label="Edit note">create</mat-icon>
             </button>
             <button mat-button class="note-action pin" (click)="unpinNote(this.note)">
               <mat-icon aria-label="Pin note">report_off</mat-icon>
