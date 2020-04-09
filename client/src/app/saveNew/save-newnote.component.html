@@ -1,0 +1,31 @@
+<div fxLayout="row">
+  <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10">
+    <form [formGroup]="saveNewNoteForm" (ngSubmit)="submitForm();">
+      <mat-card class="save-newnote-card">
+        <mat-card-header>
+          <mat-card-title class="save-newnote-title">Save New Note</mat-card-title>
+        </mat-card-header>
+        <mat-card-content fxLayout="column">
+          <mat-form-field>
+            <mat-label>Body</mat-label>
+              <input matInput id="bodyField" placeholder="Body" formControlName="body"
+                  required>
+            <mat-error *ngFor="let validation of saveNewNoteValidationMessages.body">
+              <mat-error class="error-message" id="body-error"
+                        *ngIf="saveNewNoteForm.get('body').hasError(validation.type) && (saveNewNoteForm.get('body').dirty || saveNewNoteForm.get('body').touched)">
+                {{validation.message}}
+              </mat-error>
+            </mat-error>
+          </mat-form-field>
+
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button id="confirmSaveNewNoteButton" type="button" color="primary"
+                  [disabled]="!saveNewNoteForm.valid" type="submit">
+                  SAVE NEW NOTE
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </div>
+</div>
