@@ -34,6 +34,9 @@ import { ViewerPageComponent } from './viewer-page/viewer-page.component';
 import { AddNoteComponent } from './add/add-note.component';
 import { EditComponent } from './edit/edit.component';
 import { UserDoorBoardComponent } from './user-doorboard/user-doorboard.component';
+import { SaveNewNoteComponent } from './saveNew/save-newnote.component';
+import { SaveMadeComponent } from './saveMade/save-madenote.component';
+import { SaveNotePageComponent } from './saveNotePage/save-page.component';
 
 const MATERIAL_MODULES: any[] = [
   MatListModule,
@@ -62,6 +65,9 @@ const MATERIAL_MODULES: any[] = [
     AddNoteComponent,
     EditComponent,
     UserDoorBoardComponent,
+    SaveNewNoteComponent,
+    SaveMadeComponent,
+    SaveNotePageComponent,
   ],
   imports: [
     BrowserModule,
