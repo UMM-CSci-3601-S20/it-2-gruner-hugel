@@ -18,7 +18,7 @@ describe('The home page:', () => {
     expect(names).toContain('Batman');
     expect(names).toContain('Robert Denton');
     expect(names).toContain('Emily Bruce');
-    expect(names).toContain('Rachael Johnson');
+    expect(names).toContain('Rachel Johnson');
   });
 
   it('Should navigate to a user doorboard when you click on view doorboard', async () => {
