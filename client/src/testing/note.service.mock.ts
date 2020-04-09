@@ -10,7 +10,7 @@ export class MockNoteService extends NotesService {
     {
       _id: 'first_id',
       body: 'This is the first note',
-      user_id: 'Catherine of Aragon'
+      user_id: 'rachaeljohnson_id'
     },
     {
       _id: 'second_id',
@@ -21,7 +21,7 @@ export class MockNoteService extends NotesService {
       _id: 'third_id',
       body: 'This is the third note',
       user_id: 'Jane Seymour'
-    }
+    },
   ];
 
   public static FAKE_BODY = 'This is definitely the note you wanted';
