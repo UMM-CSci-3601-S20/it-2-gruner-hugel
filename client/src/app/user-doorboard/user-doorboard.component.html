@@ -8,6 +8,9 @@
       <button mat-raised-button class="add-note-button" matTooltip="Add Note" matTooltipPosition="below"
         routerLink="/notes/user/{{this.id}}/new">Add New Note
       </button>
+      <!-- <button mat-raised-button class="save-newnote-button" matTooltip="Save New Note" matTooltipPosition="below"
+         routerLink="/notes/user/{{this.id}}/save">Save New Note
+      </button> -->
       <button mat-raised-button class="download-pdf-button" matTooltip="Download PDF" matTooltipPositon="below"
         (click)="savePDF()">
         Download PDF
@@ -31,6 +34,9 @@
                 <button mat-button class="note-action delete" (click)="deleteNote(note._id);">
                   <mat-icon aria-label="Delete note">delete</mat-icon>
                 </button>
+                <!-- <button mat-button class="note-action save" [routerLink]="'/saveMadeNote/' + note._id">
+                  <mat-icon aria-label="Save note">save</mat-icon>
+                </button> -->
               </mat-card-actions>
             </mat-card>
           </div>
@@ -46,6 +52,9 @@
                 <button mat-button class="note-action edit" [routerLink]="'/edit/' + note._id">
                   <mat-icon aria-label="Edit note">edit</mat-icon>
                 </button>
+                <!-- <button mat-button class="note-action save" [routerLink]="'/saveMadeNote/' + note._id">
+                  <mat-icon aria-label="Save note">save</mat-icon>
+                </button> -->
                 <button mat-button class="note-action pin" (click)="pinNote(this.note)">
                   <mat-icon aria-label="Pin note">stars</mat-icon>
                 </button>
