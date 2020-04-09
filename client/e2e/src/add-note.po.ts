@@ -7,7 +7,7 @@ export interface TestNote {
 export class AddNotePage {
 
   navigateTo() {
-    return browser.get('/new');
+    return browser.get('notes/user/thisisanid/new');
   }
 
   getTitle() {
