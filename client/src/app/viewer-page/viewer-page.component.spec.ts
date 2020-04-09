@@ -6,15 +6,17 @@ import { NotesService } from '../notes.service';
 import { Note } from '../note';
 import { UserService } from '../user.service';
 import { MockUserService } from 'src/testing/user.service.mock';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ActivatedRoute } from '@angular/router';
 import { ActivatedRouteStub } from '../../testing/activated-route-stub';
+
 
 describe('ViewerPageComponent:', () => {
   let component: ViewerPageComponent;
   let fixture: ComponentFixture<ViewerPageComponent>;
   let mockNoteService: MockNoteService;
   let mockUserService: MockUserService;
+  let httpTestingController: HttpTestingController;
   const activatedRoute: ActivatedRouteStub = new ActivatedRouteStub();
 
   beforeEach(() => {
@@ -23,10 +25,11 @@ describe('ViewerPageComponent:', () => {
 
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientTestingModule],
-      declarations: [ ViewerPageComponent ],
-      providers: [{provide: NotesService, useValue: mockNoteService},
-      {provide: UserService, useValue: mockUserService},
-    {provide: ActivatedRoute, useValue: activatedRoute}]
+      declarations: [ViewerPageComponent],
+      providers: [{ provide: NotesService, useValue: mockNoteService },
+      { provide: UserService, useValue: mockUserService },
+      { provide: ActivatedRoute, useValue: activatedRoute },
+      ]
     });
 
     fixture = TestBed.createComponent(ViewerPageComponent);
@@ -37,20 +40,19 @@ describe('ViewerPageComponent:', () => {
     expect(component).toBeTruthy();
   });
 
- /* describe('The retrieveNotes() method:', () => {
+  // describe('The retrieveNotes() method:', () => {
+  //   it('gets all the usernotes', () => {
+  //     component.retrieveNotes();
+  //     req.flush(testNotes);
+  //   });
 
-    it('gets all the notes from the server', () =>{
-      component.retrieveNotes();
+  //   it('contains a note with body \'This is the first note\'', () => {
+  //     component.retrieveNotes();
+  //     activatedRoute.setParamMap({ id: 'Catherine_id' });
+  //     component.retrieveNotes();
 
-      expect(component.notes.length).toBe(3);
-    });
+  //     expect(component.notes.some((note: Note) => note.body === 'This is the first note')).toBe(true);
+  //   });
 
-    it('contains a note with body \'This is the first note\'', () => {
-      activatedRoute.setParamMap({id: 'Catherine of Aragon'});
-      component.retrieveNotes();
-
-      expect(component.notes.some((note: Note) => note.body === 'This is the first note')).toBe(true);
-    });
-
-  });*/
+  // });
 });

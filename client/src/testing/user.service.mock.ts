@@ -12,22 +12,22 @@ import { UserService } from '../app/user.service';
 export class MockUserService extends UserService {
   static testUsers: User[] = [
     {
-      _id: 'rachaeljohnson_id',
-      name: 'Rachael Johnson',
+      _id: 'Catherine_id',
+      name: 'Catherine',
       officeID: '1310',
       email: 'rmjohns@morris.umn.edu',
       building: 'Science'
     },
     {
-      _id: 'indrajitchaudhury_id',
-      name: 'Indrajit Chaudhury',
+      _id: 'Anne_id',
+      name: 'Anne',
       officeID: '1375',
       email: 'chaud072@morris.umn.edu',
       building: 'Science'
     },
     {
-      _id: 'robertdenton_id',
-      name: 'Robert Denton',
+      _id: 'Jane_id',
+      name: 'Jane',
       officeID: '2065',
       email: 'rdenton@morris.umn.edu',
       building: 'Science'
@@ -61,9 +61,12 @@ export class MockUserService extends UserService {
     // If the specified ID is for the first test user,
     // return that user, otherwise return `null` so
     // we can test illegal user requests.
-    if (id === MockUserService.testUsers[0]._id) {
+
+    // the id being passed to getUserById from the user doorboard is null
+    if (id === (MockUserService.testUsers[0]._id)) {
       return of(MockUserService.testUsers[0]);
     } else {
+      // we are hitting this even when the first user id should match
       return of(null);
     }
   }

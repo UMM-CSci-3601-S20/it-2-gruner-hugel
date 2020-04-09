@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../user.service';
@@ -17,11 +17,11 @@ import { PDFService } from '../pdf.service';
 
 // This class has access to the user of the doorboard, and all the notes that said user has made
 export class UserDoorBoardComponent implements OnInit, OnDestroy {
-  constructor(private pdfService: PDFService, private route: ActivatedRoute, private notesService: NotesService,
+  constructor(private pdfService: PDFService, public route: ActivatedRoute, private notesService: NotesService,
               private userService: UserService) { }
-  notes: Note[];
-  user: User;
-  id: string;
+  public notes: Note[];
+  public user: User;
+  public id: string;
   getNotesSub: Subscription;
   getUserSub: Subscription;
   ngOnInit(): void {
@@ -30,10 +30,9 @@ export class UserDoorBoardComponent implements OnInit, OnDestroy {
     // to display the newly requested user.
     this.route.paramMap.subscribe((pmap) => {
       this.id = pmap.get('id');
-      this.getUserSub = this.userService.getUserById(this.id).subscribe(user => this.user = user);
-      this.getNotesSub = this.notesService.getUserNotes({user_id: this.id}).subscribe(notes => this.notes = notes);
-
     });
+    this.getUserSub = this.userService.getUserById(this.id).subscribe(user => this.user = user);
+    this.getNotesSub = this.notesService.getUserNotes({ user_id: this.id }).subscribe(notes => this.notes = notes);
   }
 
   pinNote(note: Note): void {
@@ -44,7 +43,7 @@ export class UserDoorBoardComponent implements OnInit, OnDestroy {
     });
   }
 
-  unpinNote(note: Note): void{
+  unpinNote(note: Note): void {
     this.notesService.unpinNote(note, note._id).subscribe(result => {
       this.retrieveNotes();
     }, err => {
@@ -54,7 +53,7 @@ export class UserDoorBoardComponent implements OnInit, OnDestroy {
 
   retrieveNotes(): void {
     this.unsub();
-    this.getNotesSub = this.notesService.getUserNotes({user_id: this.id}).subscribe(returnedNotes => {
+    this.getNotesSub = this.notesService.getUserNotes({ user_id: this.id }).subscribe(returnedNotes => {
       this.notes = returnedNotes;
     }, err => {
       console.log(err);
