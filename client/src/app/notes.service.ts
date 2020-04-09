@@ -13,13 +13,13 @@ export class NotesService {
   readonly noteUrl: string = environment.API_URL + 'notes';
   readonly userUrl: string = environment.API_URL + 'user';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   getNotes() {
     return this.httpClient.get<Note[]>(this.noteUrl);
   }
 
-  getUserNotes(filters?: {user_id: string}): Observable<Note[]> {
+  getUserNotes(filters?: { user_id: string }): Observable<Note[]> {
     let httpParams: HttpParams = new HttpParams();
     if (filters.user_id) {
       httpParams = httpParams.set('user_id', filters.user_id);
@@ -30,8 +30,8 @@ export class NotesService {
   }
 
   addNote(id: string, newNote: Note): Observable<string> {
-    return this.httpClient.post<{id: string}>
-    (this.noteUrl + '/user/' + id + '/new', newNote).pipe(map(res => res.id));
+    return this.httpClient.post<{ id: string }>
+      (this.noteUrl + '/user/' + id + '/new', newNote).pipe(map(res => res.id));
   }
 
   /**
@@ -57,15 +57,15 @@ export class NotesService {
   }
 
   editNote(editNote: Note, id: string): Observable<string> {
-    return this.httpClient.post<{id: string}>(this.noteUrl + '/edit/' + editNote.user_id + '/' + id, editNote).pipe(map(res => res.id));
+    return this.httpClient.post<{ id: string }>(this.noteUrl + '/edit/' + editNote.user_id + '/' + id, editNote).pipe(map(res => res.id));
   }
 
   pinNote(pinNote: Note, id: string): Observable<string> {
-    return this.httpClient.post<{id: string}>(this.noteUrl + '/pin/' + id, pinNote).pipe(map(res => res.id));
+    return this.httpClient.post<{ id: string }>(this.noteUrl + '/pin/' + id, pinNote).pipe(map(res => res.id));
   }
 
   unpinNote(pinNote: Note, id: string): Observable<string> {
-    return this.httpClient.post<{id: string}>(this.noteUrl + '/unpin/' + id, pinNote).pipe(map(res => res.id));
+    return this.httpClient.post<{ id: string }>(this.noteUrl + '/unpin/' + id, pinNote).pipe(map(res => res.id));
   }
 
   getNoteById(id: string): Observable<Note> {
@@ -74,7 +74,7 @@ export class NotesService {
 
   // save notes or commonly used
 
-  getSaveUserNotes(filters?: {user_id: string}): Observable<Note[]> {
+  getSaveUserNotes(filters?: { user_id: string }): Observable<Note[]> {
     let httpParams: HttpParams = new HttpParams();
     if (filters.user_id) {
       httpParams = httpParams.set('user_id', filters.user_id);
@@ -85,12 +85,13 @@ export class NotesService {
   }
 
   saveMadeNote(saveMadeNote: Note, id: string): Observable<string> {
-    return this.httpClient.post<{id: string}>(this.noteUrl + '/save/' + saveMadeNote.user_id + '/' + id, saveMadeNote).pipe(map(res => res.id));
+    return this.httpClient.post<{ id: string }>
+    (this.noteUrl + '/save/' + saveMadeNote.user_id + '/' + id, saveMadeNote).pipe(map(res => res.id));
   }
 
   saveNewNote(id: string, saveNewNote: Note): Observable<string> {
-    return this.httpClient.post<{id: string}>
-    (this.noteUrl + '/user/' + id + '/saveNewNote', saveNewNote).pipe(map(res => res.id));
+    return this.httpClient.post<{ id: string }>
+      (this.noteUrl + '/user/' + id + '/saveNewNote', saveNewNote).pipe(map(res => res.id));
   }
 
 
