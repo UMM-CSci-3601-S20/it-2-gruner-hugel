@@ -51,7 +51,6 @@ export class MockUserService extends UserService {
   constructor() {
     super(null);
   }
-  // no filters here yet, don't know what we want to have the database filter for us
   getUsers(): Observable<User[]> {
     // Just return the test users regardless of what filters are passed in
     return of(MockUserService.testUsers);
