@@ -1,0 +1,47 @@
+@import '../notes.scss';
+
+/**
+ * Modify the note card so it has a little action-bar at the bottom
+ */
+.note-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.note-card p {
+  flex-grow: 1;
+}
+
+.note-card .mat-card-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+// For some reason, Angular gives margins to every button but the first.
+// So, we have to go back and add these margins manually.
+.note-card .mat-card-actions .mat-button:first-child {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+#pdf-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.add-note-fab {
+  position: fixed;
+  bottom: 15px;
+  right: 30px;
+}
+
+p {
+  font-size: 15px;
+}
+
+h2 {
+  text-align: center;
+  text-decoration: underline;
+}

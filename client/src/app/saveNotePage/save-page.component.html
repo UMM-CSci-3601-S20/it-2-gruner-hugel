@@ -1,0 +1,40 @@
+<div class="saveNotePage-background" fxFill>
+  <div>
+    <mat-card class="user-card" *ngIf="user">
+      <h3>{{this.user.name + '\'s Saved Notes'}}</h3>
+    </mat-card>
+    <div class="add-button-container">
+      <!--This is where we add our new notes. The user ID is automatically set for each new note to match the id of the user-->
+      <button mat-raised-button class="add-note-button" matTooltip="Add Note" matTooltipPosition="below"
+        routerLink="/notes/user/{{this.id}}/new">Add New Note
+      </button>
+      <button mat-raised-button class="save-newnote-button" matTooltip="Save New Note" matTooltipPosition="below"
+        routerLink="/notes/user/{{this.id}}/save">Save New Note
+      </button>
+    </div>
+
+    <div *ngIf="notes">
+      <h2>Saved Notes</h2>
+      <ul class="note-container">
+        <div *ngFor="let note of this.notes.slice().reverse()">
+          <div *ngIf="this.note.pinned == 'false'">
+            <mat-card class="note-card">
+              <p> {{this.note.body}} </p>
+              <mat-card-actions>
+                <button mat-button class="note-action edit" [routerLink]="'/edit/' + note._id">
+                  <mat-icon aria-label="Edit note">edit</mat-icon>
+                </button>
+                <button mat-button class="note-action save" [routerLink]="'/saveMadeNote/' + note._id">
+                  <mat-icon aria-label="Save note">save</mat-icon>
+                </button>
+                <button mat-button class="note-action delete" (click)="deleteNote(note._id);">
+                  <mat-icon aria-label="Delete note">delete</mat-icon>
+                </button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>
