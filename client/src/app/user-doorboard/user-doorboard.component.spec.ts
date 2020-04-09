@@ -38,8 +38,7 @@ describe('UserDoorBoardComponent', () => {
       pinned: 'false'
     }
   ];
-  let user: User;
-  let notes: Note[];
+
   let doorBoardComponent: UserDoorBoardComponent;
   let mockPDFService: MockPDFService;
   let mockNoteService: MockNoteService;
@@ -62,14 +61,16 @@ describe('UserDoorBoardComponent', () => {
         { provide: PDFService, useValue: new PDFService() }
       ]
     })
-      .compileComponents();
+      .compileComponents(); // Trying to get this to compile before the it tests try to access it
+  }));
+  beforeEach(() => {
     fixture = TestBed.createComponent(UserDoorBoardComponent);
     doorBoardComponent = fixture.componentInstance;
     fixture.detectChanges();
     mockPDFService = new MockPDFService();
     mockNoteService = new MockNoteService();
     mockUserService = new MockUserService();
-  }));
+  });
 
   it('should create the component', () => {
     expect(doorBoardComponent).toBeTruthy();
