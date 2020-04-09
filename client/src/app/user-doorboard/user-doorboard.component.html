@@ -14,9 +14,9 @@
       </button>
     </div>
 
-    <div *ngIf="notes">
+    <div>
       <h2>Pinned Notes</h2>
-      <ul class="pinned-note-container">
+      <ul class="pinned-note-container" *ngIf="notes">
         <div *ngFor="let note of this.notes.slice().reverse()">
           <div *ngIf="this.note.pinned == 'true'">
             <mat-card class="note-card">
@@ -37,7 +37,7 @@
         </div>
       </ul>
       <h2>Unpinned Notes</h2>
-      <ul class="unpinned-note-container">
+      <ul class="unpinned-note-container" *ngIf="notes">
         <div *ngFor="let note of this.notes.slice().reverse()">
           <div *ngIf="this.note.pinned == 'false'">
             <mat-card class="note-card">
@@ -58,23 +58,5 @@
         </div>
       </ul>
     </div>
-    <!-- <div *ngIf="notes">
-      <h2>Pinned Notes</h2>
-      <ul class="note-container">
-        <mat-card class="note-card" *ngFor="let note of this.notes.slice().reverse()">
-          <div *ngIf="this.note.pinned=='true'"></div>
-          <p> {{this.note.body}} </p>
-          <mat-card-actions>
-            <button mat-button class="note-action edit" [routerLink]="'/notes/edit/' + user._id + '/' + note._id">
-              <mat-icon aria-label="Edit note">create</mat-icon>
-            </button>
-            <button mat-button class="note-action delete" (click)="deleteNote(note._id);">
-              <mat-icon aria-label="Delete note">delete</mat-icon>
-            </button>
-          </mat-card-actions>
-        </mat-card>
-      </ul>
-    </div> -->
-
   </div>
 </div>
