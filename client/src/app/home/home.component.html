@@ -7,7 +7,7 @@
 
 <div *ngIf="notes; else notesError">
 <ul class= "note-container">
-  <mat-card class="note-card" *ngFor="let note of this.notes">
+  <mat-card class="note-card" *ngFor="let note of this.notes.slice().reverse()">
     <p> {{this.note.body}} </p>
     <mat-card-actions>
       <button mat-button class="note-action edit" [routerLink]="'/edit/' + note._id">
