@@ -84,12 +84,5 @@ describe('Home:', () => {
   //   });
   // });
 
-  // describe('The GENERATE PDF button:', () => {
-  //   it('gets a pdf document from PDFService and calls .save() on it', () => {
-  //     el.click();
-  //     expect(mockPDFService.doc.save).toHaveBeenCalled();
-  //   });
-  // });
-
 });
 
