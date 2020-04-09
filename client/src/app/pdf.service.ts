@@ -9,11 +9,11 @@ export class PDFService {
   }
 
   /**
-   * Returns a jsPDF object with a link to Professor Rachel's
-   * DoorBoard viewer page.
+   * Returns a jsPDF object with a link to a user's
+   * DoorBoard page.
    */
-  getPDF(): jsPDF {
-    const url: string = environment.BASE_URL + '/viewers';
+  getPDF(userName: string, userID: string): jsPDF {
+    const url: string = environment.BASE_URL + '/notes/user/' + userID + '/viewer';
 
     const doc = new jsPDF({
       orientation: 'portrait',
@@ -22,7 +22,7 @@ export class PDFService {
     });
 
     doc.setFontSize(18);
-    doc.text('Rachel Johnson\'s DoorBoard', (8.5 / 2), 4, { align: 'center' });
+    doc.text(userName + '\'s DoorBoard', (8.5 / 2), 4, { align: 'center' });
     doc.text(url, (8.5 / 2), 4.5, { align: 'center' });
 
     return doc;

@@ -9,15 +9,21 @@ describe('Note service:', () => {
   const testNotes: Note[] = [
     {
       _id: 'first_id',
-      body: 'This is the first note'
+      user_id: 'testman_id',
+      body: 'This is the first note',
+      pinned: 'false',
     },
     {
       _id: 'second_id',
-      body: 'This is the second note'
+      user_id: 'spaceman_id',
+      body: 'This is the second note',
+      pinned: 'false',
     },
     {
       _id: 'third_id',
-      body: 'This is the third note'
+      user_id: 'cowtipper_id',
+      body: 'This is the third note',
+      pinned: 'false',
     },
   ];
   let noteService: NotesService;
@@ -70,13 +76,13 @@ describe('Note service:', () => {
 
 
   describe('The addNote() method:', () => {
-    it('calls api/notes/new', () => {
+    it('calls api/notes/user/:id/new', () => {
 
-      noteService.addNote(testNotes[1]).subscribe(
+      noteService.addNote('second_id', testNotes[1]).subscribe(
         id => expect(id).toBe('testid')
       );
 
-      const req = httpTestingController.expectOne(noteService.noteUrl + '/new');
+      const req = httpTestingController.expectOne(noteService.noteUrl + '/user/second_id/new');
 
       expect(req.request.method).toEqual('POST');
       expect(req.request.body).toEqual(testNotes[1]);
@@ -121,19 +127,33 @@ describe('Note service:', () => {
   describe('The editNote() method:', () => {
     it('calls api/notes/edit/:id', () => {
       const newNote = {
-        body: 'We sailed on the Sloop John B / My grandfather and me'
+        body: 'We sailed on the Sloop John B / My grandfather and me',
+        user_id: 'id',
+        pinned: 'false'
       } as Note;
 
       noteService.editNote(newNote, 'testid').subscribe(
         id => expect(id).toBe('testid')
       );
 
-      const req = httpTestingController.expectOne(noteService.noteUrl + '/edit/testid');
+      const req = httpTestingController.expectOne(noteService.noteUrl + '/edit/' + newNote.user_id + '/testid');
 
       expect(req.request.method).toEqual('POST');
       expect(req.request.body).toEqual(newNote);
 
       req.flush({id: 'testid'});
+    });
+  });
+// test currently broken because getUserNotes outputs an array of notes, and I'm expecting one entry from an array instead
+
+  describe('getUserNotes() method:', () => {
+    it('calls api/notes/user/:id', () => {
+      noteService.getUserNotes({user_id: 'cowtipper_id'}).subscribe(notes => expect(notes)
+      .toEqual(jasmine.objectContaining(testNotes[2])));
+
+      const req = httpTestingController.expectOne(noteService.noteUrl + '/user/' + 'cowtipper_id?user_id=cowtipper_id');
+      expect (req.request.method).toEqual('GET');
+      req.flush(testNotes[2]);
     });
   });
 });

@@ -3,16 +3,18 @@ package umm3601.notes;
 import static com.mongodb.client.model.Filters.eq;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.common.collect.ImmutableMap;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.DeleteResult;
 
-import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Updates.set;
 
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 import org.mongojack.JacksonCodecRegistry;
 
@@ -55,10 +57,22 @@ public class NoteController {
     ctx.json(noteCollection.find(new Document()).into(new ArrayList<>()));
   }
 
+  public void getUserNotes(Context ctx) {
+    List<Bson> filters = new ArrayList<Bson>();
+
+    if (ctx.queryParamMap().containsKey("user_id")) {
+      filters.add(eq("user_id", ctx.queryParam("user_id")));
+    }
+    else {throw new NotFoundResponse("The query param map does not contain the specified user id");}
+
+    ctx.json(noteCollection.find(filters.isEmpty() ? new Document() : and(filters)).into(new ArrayList<>()));
+  }
+
   public void addNote(Context ctx) {
 
     Note newNote = ctx.bodyValidator(Note.class)
     .check((note) -> note.body.length() >= 2 && note.body.length() <= 300).get();
+    newNote.pinned = "false";
 
     noteCollection.insertOne(newNote);
     ctx.status(201);
@@ -97,6 +111,34 @@ public class NoteController {
     } else {
       // Deleting a non-existent id is still considered a success.
       ctx.result(NOT_DELETED_RESPONSE);
+    }
+  }
+
+  public void pinNote(Context ctx) {
+    String id = ctx.pathParamMap().get("id");
+
+    Note oldNote = noteCollection.findOneAndUpdate(eq("_id", new ObjectId(id)), set("pinned", "true"));
+
+    if (oldNote == null) {
+      ctx.status(400);
+      throw new NotFoundResponse("The requested note was not found");
+    } else {
+      ctx.status(200);
+      ctx.json(ImmutableMap.of("id", id));
+    }
+  }
+
+  public void unpinNote(Context ctx) {
+    String id = ctx.pathParamMap().get("id");
+
+    Note oldNote = noteCollection.findOneAndUpdate(eq("_id", new ObjectId(id)), set("pinned", "false"));
+
+    if (oldNote == null) {
+      ctx.status(400);
+      throw new NotFoundResponse("The requested note was not found");
+    } else {
+      ctx.status(200);
+      ctx.json(ImmutableMap.of("id", id));
     }
   }
 }

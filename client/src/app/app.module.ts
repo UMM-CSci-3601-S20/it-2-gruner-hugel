@@ -29,9 +29,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
 import { PDFService } from './pdf.service';
 import { NotesService } from './notes.service';
+import { UserService } from './user.service';
 import { ViewerPageComponent } from './viewer-page/viewer-page.component';
 import { AddNoteComponent } from './add/add-note.component';
 import { EditComponent } from './edit/edit.component';
+import { UserDoorBoardComponent } from './user-doorboard/user-doorboard.component';
 
 const MATERIAL_MODULES: any[] = [
   MatListModule,
@@ -59,6 +61,7 @@ const MATERIAL_MODULES: any[] = [
     ViewerPageComponent,
     AddNoteComponent,
     EditComponent,
+    UserDoorBoardComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,6 +77,7 @@ const MATERIAL_MODULES: any[] = [
   providers: [
     PDFService,
     NotesService,
+    UserService,
   ],
   bootstrap: [AppComponent]
 })

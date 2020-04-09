@@ -1,37 +1,22 @@
-<div fxLayout="row" id="pdf-div">
-  <button mat-button id="generate-pdf-button" type="button" color="primary" (click)="savePDF()">
-    GENERATE PDF
-  </button>
-</div>
+<div fxLayout="row">
+  <div *ngIf="users">
 
-<div *ngIf="notes; else notesError">
-<ul class= "note-container">
-  <mat-card class="note-card" *ngFor="let note of this.notes.slice().reverse()">
-    <p> {{this.note.body}} </p>
+  <div *ngIf="users">
+<ul class= "users-container">
+  <mat-card class="user-card" *ngFor="let user of this.users">
+    <p class= "user-card-name"> {{this.user.name}} </p>
+    <p> {{this.user.building }} {{this.user.officeID }}</p>
+    <p> {{this.user.email }} </p>
     <mat-card-actions>
-      <button mat-button class="note-action edit" [routerLink]="'/edit/' + note._id">
-        <mat-icon aria-label="Edit note">create</mat-icon>
+      <button mat-button class="edit-doorboard" [routerLink]="'/notes/user/' + user._id">
+        EDIT DOORBOARD
       </button>
-      <button mat-button class="note-action delete" (click)="deleteNote(note._id);">
-        <mat-icon aria-label="Delete note">delete</mat-icon>
+      <button mat-button class="view-doorboard" [routerLink]="'/notes/user/' + user._id + '/viewer'">
+        VIEW DOORBOARD
       </button>
     </mat-card-actions>
   </mat-card>
 </ul>
 </div>
 
-<ng-template #notesError>
-  <div class="note-error">
-    <mat-error>
-      There was a problem loading the notes. Possibly the server is down or perhaps there are network
-      issues.
-    </mat-error>
-    <mat-error>
-      Please wait a bit and try again.
-    </mat-error>
-  </div>
-</ng-template>
-
-<button mat-fab class="add-note-fab" matTooltip="Add Note" matTooltipPosition="left" routerLink="/new">
-  <mat-icon class="md-24" aria-label="Add Note">add</mat-icon>
-</button>
+</div>

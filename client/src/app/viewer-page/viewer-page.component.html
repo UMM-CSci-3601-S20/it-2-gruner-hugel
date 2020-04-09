@@ -1,5 +1,5 @@
-<nav class="navbar">
-  <h2> Rachel Johnson's DoorBoard </h2>
+<nav class="navbar" *ngIf="user">
+  <h2> {{this.user.name + '\'s Doorboard'}} </h2>
 </nav>
 
 <div *ngIf="notes; else notesError">

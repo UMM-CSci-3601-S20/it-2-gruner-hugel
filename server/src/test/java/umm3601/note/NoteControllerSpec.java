@@ -61,11 +61,8 @@ public class NoteControllerSpec {
   public static void setupAll() {
     String mongoAddr = System.getenv().getOrDefault("MONGO_ADDR", "localhost");
 
-    mongoClient = MongoClients.create(
-    MongoClientSettings.builder()
-    .applyToClusterSettings(builder ->
-    builder.hosts(Arrays.asList(new ServerAddress(mongoAddr))))
-    .build());
+    mongoClient = MongoClients.create(MongoClientSettings.builder()
+        .applyToClusterSettings(builder -> builder.hosts(Arrays.asList(new ServerAddress(mongoAddr)))).build());
 
     db = mongoClient.getDatabase("test");
   }
@@ -81,13 +78,15 @@ public class NoteControllerSpec {
     MongoCollection<Document> noteDocuments = db.getCollection("notes");
     noteDocuments.drop();
     List<Document> testNotes = new ArrayList<>();
-    testNotes.add(Document.parse("{ body: \"This is the first body\" }"));
-    testNotes.add(Document.parse("{ body: \"This is the second body\" }"));
-    testNotes.add(Document.parse("{ body: \"This is the third body\" }"));
+    testNotes.add(Document.parse("{\n" + "                    body: \"I wanna say something,\",\n"
+        + "                    user_id: \"1310\",\n" + "                }"));
+    testNotes.add(Document.parse("{\n" + "                    body: \"I wanna say something 2,\",\n"
+        + "                    user_id: \"1311\",\n" + "                }"));
+    testNotes.add(Document.parse("{\n" + "                    body: \"I wanna say something 3,\",\n"
+        + "                    user_id: \"1312\",\n" + "                }"));
 
     importantNoteId = new ObjectId();
-    importantNote = new BasicDBObject("_id", importantNoteId)
-        .append("body", "Frogs are pretty cool");
+    importantNote = new BasicDBObject("_id", importantNoteId).append("body", "Frogs are pretty cool");
 
     noteDocuments.insertMany(testNotes);
     noteDocuments.insertOne(Document.parse(importantNote.toJson()));
@@ -113,11 +112,12 @@ public class NoteControllerSpec {
     assertEquals(db.getCollection("notes").countDocuments(), JavalinJson.fromJson(result, Note[].class).length);
   }
 
- @Test
+  @Test
   public void GetNoteWithExistentId() throws IOException {
 
     mockReq.setMethod("GET");
-    Context ctx = ContextUtil.init(mockReq, mockRes, "api/notes/:id", ImmutableMap.of("id", importantNoteId.toHexString()));
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/notes/:id",
+        ImmutableMap.of("id", importantNoteId.toHexString()));
     noteController.getNoteByID(ctx);
 
     assertEquals(200, mockRes.getStatus());
@@ -144,7 +144,8 @@ public class NoteControllerSpec {
   public void GetNoteWithNonexistentId() throws IOException {
 
     mockReq.setMethod("GET");
-    Context ctx = ContextUtil.init(mockReq, mockRes, "api/notes/:id", ImmutableMap.of("id", new ObjectId().toHexString()));
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/notes/:id",
+        ImmutableMap.of("id", new ObjectId().toHexString()));
 
     assertThrows(NotFoundResponse.class, () -> {
       noteController.getNoteByID(ctx);
@@ -191,7 +192,7 @@ public class NoteControllerSpec {
   @Test
   public void AddNoteWithTooLongBody() throws IOException {
     String testNewNote = "{\"body\":\"";
-    for(int i = 0; i < 1000; i++) {
+    for (int i = 0; i < 1000; i++) {
       testNewNote = testNewNote + "x";
     }
     testNewNote = testNewNote + "\"}";
@@ -209,7 +210,8 @@ public class NoteControllerSpec {
   public void DeleteNote() throws IOException {
     assertEquals(1, db.getCollection("notes").countDocuments(eq("_id", importantNoteId)));
 
-    Context ctx = ContextUtil.init(mockReq, mockRes, "api/notes/:id", ImmutableMap.of("id", importantNoteId.toHexString()));
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/notes/:id",
+        ImmutableMap.of("id", importantNoteId.toHexString()));
     noteController.deleteNote(ctx);
 
     assertEquals(200, mockRes.getStatus());
@@ -225,16 +227,15 @@ public class NoteControllerSpec {
 
     assertEquals(0, db.getCollection("notes").countDocuments(eq("_id", noSuchNoteId)));
 
-    Context ctx = ContextUtil.init(mockReq, mockRes, "api/notes/:id", ImmutableMap.of("id", noSuchNoteId.toHexString()));
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/notes/:id",
+        ImmutableMap.of("id", noSuchNoteId.toHexString()));
     noteController.deleteNote(ctx);
 
     assertEquals(200, mockRes.getStatus());
     assertEquals(ctx.resultString(), NoteController.NOT_DELETED_RESPONSE);
 
-
     assertEquals(0, db.getCollection("notes").countDocuments(eq("_id", noSuchNoteId)));
   }
-
 
   @Test
   public void EditNote() throws IOException {
@@ -269,5 +270,38 @@ public class NoteControllerSpec {
 
     assertEquals(0, db.getCollection("notes").countDocuments(eq("_id", wrongId)));
 
+  }
+
+  @Test
+  public void GetnotesByuser_id() throws IOException {
+
+    // Set the query string to test with
+    mockReq.setQueryString("user_id=1310");
+
+    // Create our fake Javalin context
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/notes/user/1310");
+
+    noteController.getUserNotes(ctx);
+
+    String result = ctx.resultString();
+    Note[] resultnotes = JavalinJson.fromJson(result, Note[].class);
+
+    assertEquals(1, resultnotes.length); // There should be one user returned
+    for (Note note : resultnotes) {
+      assertEquals("1310", note.user_id); // There should be one with that id
+    }
+  }
+
+  @Test
+  public void GetNotesWithoutUserId() throws IOException {
+    mockReq.setQueryString("not user id");
+    mockReq.setMethod("GET");
+
+    // Create our fake Javalin context
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/notes/user/:id");
+
+    assertThrows(NotFoundResponse.class, () -> {
+      noteController.getUserNotes(ctx);
+    });
   }
 }

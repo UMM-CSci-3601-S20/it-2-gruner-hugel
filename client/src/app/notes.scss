@@ -1,8 +1,16 @@
 /**
- * Common formatting for notes on the viewer page and the owner page.
+ * Common formatting for notes on the viewer page and the user page.
  */
 
-.note-container {
+.pinned-note-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.unpinned-note-container {
   padding: 0;
   margin: 0;
   list-style: none;

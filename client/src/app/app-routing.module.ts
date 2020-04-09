@@ -4,13 +4,15 @@ import { HomeComponent } from './home/home.component';
 import { ViewerPageComponent } from './viewer-page/viewer-page.component';
 import { AddNoteComponent } from './add/add-note.component';
 import { EditComponent } from './edit/edit.component';
+import { UserDoorBoardComponent } from './user-doorboard/user-doorboard.component';
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'new', component: AddNoteComponent},
-  {path: 'viewers', component: ViewerPageComponent},
-  {path: 'edit/:id', component: EditComponent}
+  {path: 'notes/user/:id/viewer', component: ViewerPageComponent},
+  {path: 'notes/edit/:userID/:id', component: EditComponent},
+  {path: 'notes/user/:id', component: UserDoorBoardComponent},
+  {path: 'notes/user/:id/new', component: AddNoteComponent}
 ];
 
 @NgModule({

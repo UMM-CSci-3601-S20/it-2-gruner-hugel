@@ -1,0 +1,47 @@
+[
+  {
+    "_id": {
+      "$oid": "588935f57546a2daea44de7c"
+    },
+    "name": "Santa Claus",
+    "officeID": "",
+    "email": "Santa@NP.com",
+    "building": "The North Pole"
+  },
+  {
+    "_id": {
+      "$oid": "588935f57546a2daea44de7d"
+    },
+    "name": "Batman",
+    "officeID": "",
+    "email": "Darkness@theknight.com",
+    "building": "Some cave"
+  },
+  {
+    "_id": {
+      "$oid": "588935f57546a2daea44de7e"
+    },
+    "name": "Robert Denton",
+    "officeID": "2065",
+    "email": "rdenton@morris.umn.edu",
+    "building": "Science"
+  },
+  {
+    "_id": {
+      "$oid": "78f1d3bfa098879fe7a01373"
+    },
+    "name": "Emily Bruce",
+    "officeID": "118",
+    "email": "bruce088@morris.umn.edu",
+    "building": "Camden"
+  },
+  {
+    "_id": {
+      "$oid": "12345678910111213141516a"
+    },
+    "name": "Rachel Johnson",
+    "officeID": "1310",
+    "email": "rmjohnson@morris.umn.edu",
+    "building": "Science"
+  }
+]

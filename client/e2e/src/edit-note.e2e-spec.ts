@@ -17,6 +17,8 @@ describe('Edit note:', () => {
   });
 
   it('Should enable and disable the edit note button', async () => {
+    expect(element(by.buttonText('EDIT NOTE')).isEnabled()).toBe(false);
+    await page.typeInput('bodyField', E2EUtil.randomText(20));
     expect(element(by.buttonText('EDIT NOTE')).isEnabled()).toBe(true);
 
     await page.typeInput('bodyField', E2EUtil.randomText(1000));
