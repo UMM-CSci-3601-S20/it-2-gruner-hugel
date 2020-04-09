@@ -4,7 +4,9 @@ import { HomePage } from './home.po';
 export class EditNotePage {
 
   navigateTo() {
-    return browser.get('notes/edit/userID/NoteID');
+    const homePage = new HomePage();
+    homePage.navigateTo();
+    homePage.editFirstNote();
   }
 
   getTitle() {
