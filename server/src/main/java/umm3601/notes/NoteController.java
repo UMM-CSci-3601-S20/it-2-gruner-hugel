@@ -68,7 +68,29 @@ public class NoteController {
     ctx.json(noteCollection.find(filters.isEmpty() ? new Document() : and(filters)).into(new ArrayList<>()));
   }
 
+  public void getUserSaveNotes(Context ctx) {
+    List<Bson> filters = new ArrayList<Bson>();
+
+    if (ctx.queryParamMap().containsKey("user_id")) {
+      filters.add(eq("user_id", ctx.queryParam("user_id")));
+    }
+    else {throw new NotFoundResponse("The query param map does not contain the specified user id");}
+
+    ctx.json(noteCollection.find(filters.isEmpty() ? new Document() : and(filters)).into(new ArrayList<>()));
+  }
+
   public void addNote(Context ctx) {
+
+    Note newNote = ctx.bodyValidator(Note.class)
+    .check((note) -> note.body.length() >= 2 && note.body.length() <= 300).get();
+    newNote.pinned = "false";
+
+    noteCollection.insertOne(newNote);
+    ctx.status(201);
+    ctx.json(ImmutableMap.of("id", newNote._id));
+  }
+  //this is creating a new note to save from scratch
+  public void newSaveNote(Context ctx) {
 
     Note newNote = ctx.bodyValidator(Note.class)
     .check((note) -> note.body.length() >= 2 && note.body.length() <= 300).get();
@@ -80,6 +102,24 @@ public class NoteController {
   }
 
   public void editNote(Context ctx) {
+    String id = ctx.pathParamMap().get("id");
+
+    Note newNote= ctx.bodyValidator(Note.class)
+    .check((note) -> note.body.length() >= 2 && note.body.length() <= 300).get();
+    String newBody = newNote.body;
+
+    Note oldNote = noteCollection.findOneAndUpdate(eq("_id", new ObjectId(id)), set("body", newBody));
+
+    if (oldNote == null) {
+      ctx.status(400);
+      throw new NotFoundResponse("The requested note was not found");
+    } else {
+      ctx.status(200);
+      ctx.json(ImmutableMap.of("id", id));
+    }
+  }
+  //this creates a new save made note from an existing one
+  public void saveMadeNote(Context ctx) {
     String id = ctx.pathParamMap().get("id");
 
     Note newNote= ctx.bodyValidator(Note.class)

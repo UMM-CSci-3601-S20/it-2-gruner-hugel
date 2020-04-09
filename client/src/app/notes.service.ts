@@ -72,4 +72,26 @@ export class NotesService {
     return this.httpClient.get<Note>(this.noteUrl + '/' + id);
   }
 
+  // save notes or commonly used
+
+  getSaveUserNotes(filters?: {user_id: string}): Observable<Note[]> {
+    let httpParams: HttpParams = new HttpParams();
+    if (filters.user_id) {
+      httpParams = httpParams.set('user_id', filters.user_id);
+    }
+    return this.httpClient.get<Note[]>(this.noteUrl + '/save/' + filters.user_id, {
+      params: httpParams,
+    });
+  }
+
+  saveMadeNote(saveMadeNote: Note, id: string): Observable<string> {
+    return this.httpClient.post<{id: string}>(this.noteUrl + '/save/' + saveMadeNote.user_id + '/' + id, saveMadeNote).pipe(map(res => res.id));
+  }
+
+  saveNewNote(id: string, saveNewNote: Note): Observable<string> {
+    return this.httpClient.post<{id: string}>
+    (this.noteUrl + '/user/' + id + '/saveNewNote', saveNewNote).pipe(map(res => res.id));
+  }
+
+
 }

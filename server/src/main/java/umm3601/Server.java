@@ -48,14 +48,20 @@ public class Server {
     // Get all notes for a particular user
     server.get("api/notes/user/:id", noteController::getUserNotes);
 
+    server.get("api/notes/user/:id/save", noteController::getUserSaveNotes);
+
     // Add new note to a specific user's doorboard
     server.post("api/notes/user/:id/new", noteController::addNote);
+
+    server.post("api/notes/user/:id/saveNew", noteController::newSaveNote);
 
     // Get a single note (:id here refers to note id)
     server.get("api/notes/:id", noteController::getNoteByID);
 
     // Edit an existing note
     server.post("api/notes/edit/:userID/:id", noteController::editNote);
+
+    server.post("api/notes/saveMade/:userID/:id", noteController::saveMadeNote);
 
     // Delete a note
     server.delete("api/notes/:id", noteController::deleteNote);
