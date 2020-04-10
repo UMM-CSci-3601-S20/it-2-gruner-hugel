@@ -13,7 +13,7 @@ export class PDFService {
    * DoorBoard page.
    */
   getPDF(userName: string, userID: string): jsPDF {
-    const url: string = environment.BASE_URL + '/notes/user/' + userID + '/viewer';
+    const url: string = environment.BASE_URL + '/notes/' + userID + '/view';
 
     const doc = new jsPDF({
       orientation: 'portrait',
