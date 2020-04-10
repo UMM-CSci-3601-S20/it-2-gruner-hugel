@@ -19,10 +19,12 @@ export class PDFService {
       orientation: 'portrait',
       unit: 'in',
       format: 'letter',
+      align: 'center'
     });
 
     doc.setFontSize(18);
     doc.text(userName + '\'s DoorBoard', (8.5 / 2), 4, { align: 'center' });
+    doc.setFontSize(14);
     doc.text(url, (8.5 / 2), 4.5, { align: 'center' });
 
     return doc;
