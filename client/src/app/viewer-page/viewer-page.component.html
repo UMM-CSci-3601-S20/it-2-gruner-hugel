@@ -1,12 +1,34 @@
 <nav class="navbar" *ngIf="user">
-  <h2> {{this.user.name + '\'s Doorboard'}} </h2>
+  <h1> {{this.user.name + '\'s Doorboard'}} </h1>
 </nav>
 
-<div *ngIf="notes; else notesError">
-  <ul class= "note-container">
-    <mat-card class="note-card" *ngFor="let note of this.notes">
-      <p> {{this.note.body}} </p>
-    </mat-card>
+<div>
+  <h2>Pinned Notes</h2>
+  <ul class="pinned-note-container" *ngIf="notes">
+    <div *ngFor="let note of this.notes.slice().reverse()">
+      <div *ngIf="this.note.pinned == 'true'">
+        <mat-card class="note-card">
+          <p class="note-card-body"> {{this.note.body}} </p>
+          <mat-card-actions>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </ul>
+</div>
+
+<div>
+  <h2>Unpinned Notes</h2>
+  <ul class="unpinned-note-container" *ngIf="notes">
+    <div *ngFor="let note of this.notes.slice().reverse()">
+      <div *ngIf="this.note.pinned == 'false'">
+        <mat-card class="note-card">
+          <p class="note-card-body"> {{this.note.body}} </p>
+          <mat-card-actions>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
   </ul>
 </div>
 
