@@ -31,6 +31,10 @@
   justify-content: center;
 }
 
+.add-button-container{
+  justify-content: center;
+  display: flex;
+}
 .add-note-fab {
   position: fixed;
   bottom: 15px;
@@ -44,4 +48,16 @@ p {
 h2 {
   text-align: center;
   text-decoration: underline;
+}
+h3 {
+  text-align: center;
+}
+
+.user-card-container {
+  display: center;
+  justify-content: center;
+}
+.background {
+  display: flex;
+  justify-content: center;
 }

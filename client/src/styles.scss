@@ -25,12 +25,60 @@
 
   // Define any styles affected by the theme.
 
+  .note-card {
+    width: 200px;
+    min-height: 200px;
+    margin: 10px;
+    position: relative;
+    background-color:  palegoldenrod;
+  }
+
+  html {
+    background-color: rgba(64, 86, 209, 0.459)
+  }
+
+  .user-card, .add-note-button, .download-pdf-button{
+    align-content: center;
+    justify-content: center;
+    background-color: rgb(236, 236, 241);
+  }
+
   @if $is-dark {
     .mat-toolbar.mat-primary {
       background: mat-color($background, app-bar);
       color: mat-color($foreground, text);
     }
+    .user-card, .add-note-button, .download-pdf-button{
+      align-content: center;
+      justify-content: center;
+      background-color: rgb(91, 91, 92);
+      color: rgb(255, 255, 255);
+    }
+    .note-card{
+      width: 200px;
+      min-height: 200px;
+      margin: 10px;
+      position: relative;
+      background-color:  rgb(189, 182, 107);
+    }
+    html{
+      background-color: rgb(79, 79, 90);
+    }
+    .mat-button{
+      color: rgb(79, 79, 90)
+    }
+    p {
+      color: rgb(66, 66, 71);
+    }
+    h1, h2{
+      color: rgb(229, 229, 240)
+    }
+    h4, .edit-doorboard, .view-doorboard  {
+      color: rgb(228, 228, 238)
+    }
   }
+
+
   .drawer-list-item-active {
     background-color: mat-color($background, hover) !important;
     color: mat-color($primary) !important;
