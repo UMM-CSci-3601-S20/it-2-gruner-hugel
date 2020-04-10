@@ -1,11 +1,11 @@
-<div class="doorboard-background" fxFill>
-  <div>
+<div class="background" fxFill>
+  <div class="user-card-container">
     <mat-card class="user-card" *ngIf="user">
       <h3>{{this.user.name + '\'s Doorboard'}}</h3>
     </mat-card>
     <div class="add-button-container">
       <!--This is where we add our new notes. The user ID is automatically set for each new note to match the id of the user-->
-      <button mat-raised-button class="add-note-button" matTooltip="Add Note" matTooltipPosition="below"
+      <button *ngIf="user" mat-raised-button class="add-note-button" matTooltip="Add Note" matTooltipPosition="below"
         routerLink="/notes/user/{{this.id}}/new">Add New Note
       </button>
       <button mat-raised-button class="download-pdf-button" matTooltip="Download PDF" matTooltipPositon="below"
@@ -14,9 +14,9 @@
       </button>
     </div>
 
-    <div *ngIf="notes">
+    <div>
       <h2>Pinned Notes</h2>
-      <ul class="pinned-note-container">
+      <ul class="pinned-note-container" *ngIf="notes">
         <div *ngFor="let note of this.notes.slice().reverse()">
           <div *ngIf="this.note.pinned == 'true'">
             <mat-card class="note-card">
@@ -37,13 +37,13 @@
         </div>
       </ul>
       <h2>Unpinned Notes</h2>
-      <ul class="unpinned-note-container">
+      <ul class="unpinned-note-container" *ngIf="notes">
         <div *ngFor="let note of this.notes.slice().reverse()">
           <div *ngIf="this.note.pinned == 'false'">
             <mat-card class="note-card">
               <p class="note-card-body"> {{this.note.body}} </p>
               <mat-card-actions>
-                <button mat-button class="note-action edit" [routerLink]="'/notes/edit/' + user._id + '/' + note._id">
+                <button *ngIf="user, note" mat-button class="note-action edit" [routerLink]="'/notes/edit/' + user._id + '/' + note._id">
                   <mat-icon aria-label="Edit note">edit</mat-icon>
                 </button>
                 <button mat-button class="note-action pin" (click)="pinNote(this.note)">
@@ -58,23 +58,5 @@
         </div>
       </ul>
     </div>
-    <!-- <div *ngIf="notes">
-      <h2>Pinned Notes</h2>
-      <ul class="note-container">
-        <mat-card class="note-card" *ngFor="let note of this.notes.slice().reverse()">
-          <div *ngIf="this.note.pinned=='true'"></div>
-          <p> {{this.note.body}} </p>
-          <mat-card-actions>
-            <button mat-button class="note-action edit" [routerLink]="'/notes/edit/' + user._id + '/' + note._id">
-              <mat-icon aria-label="Edit note">create</mat-icon>
-            </button>
-            <button mat-button class="note-action delete" (click)="deleteNote(note._id);">
-              <mat-icon aria-label="Delete note">delete</mat-icon>
-            </button>
-          </mat-card-actions>
-        </mat-card>
-      </ul>
-    </div> -->
-
   </div>
 </div>
