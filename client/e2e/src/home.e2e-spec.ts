@@ -34,7 +34,7 @@ describe('The home page:', () => {
     const firstOwnerCard = await page.getUserCards().first();
     await page.clickViewDoorBoard(firstOwnerCard);
 
-    await browser.wait(EC.urlContains('/notes/user'), 10000);
+    await browser.wait(EC.urlContains('/notes'), 10000);
     const url = await page.getUrl();
     expect(url.endsWith('/viewer'));
   });
